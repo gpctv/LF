@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/8/10 ?? 11:32:26 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.DeviceProfile" table="DeviceProfile">
+        <id name="deviceProfileKey" type="string">
+            <column name="DeviceProfileKey" />
+            <generator class="assigned" />
+        </id>
+        <property name="ipaddress" type="string">
+            <column name="IPAddress" not-null="true" />
+        </property>
+        <property name="portNo" type="string">
+            <column name="PortNo" not-null="true" />
+        </property>
+        <property name="deviceType" type="string">
+            <column name="DeviceType" not-null="true" />
+        </property>
+        <property name="deviceId" type="string">
+            <column name="DeviceID" not-null="true" />
+        </property>
+        <property name="devicePosition" type="string">
+            <column name="DevicePosition" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" not-null="true" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" not-null="true" />
+        </property>
+        <property name="addWho" type="string">
+            <column name="AddWho" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" not-null="true" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" not-null="true" />
+        </property>
+        <property name="trafficCop" type="string">
+            <column name="TrafficCop" />
+        </property>
+        <property name="deviceProfileLogKey" type="string">
+            <column name="DeviceProfileLogKey" />
+        </property>
+        <property name="priority" type="string">
+            <column name="Priority" />
+        </property>
+        <property name="storerKey" type="string">
+            <column name="StorerKey" />
+        </property>
+        <property name="loc" type="string">
+            <column name="Loc" />
+        </property>
+        <property name="logicalPos" type="string">
+            <column name="LogicalPOS" not-null="true" />
+        </property>
+        <property name="logicalName" type="string">
+            <column name="LogicalName" not-null="true" />
+        </property>
+    </class>
+    <!-- cart -->
+     <sql-query name="com.lifung.dao.DeviceProfile.queryDeviceProfileKey">
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'CART'   
+       and deviceProfileKey=:deviceProfileKey
+  
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.DeviceProfile.deviceId">
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'CART'   
+       and deviceId=:deviceId
+  
+     </sql-query>
+     <sql-query name="com.lifung.dao.DeviceProfile.deviceQuery">
+        <![CDATA[ SELECT * FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'CART' and deviceID like '%'+:storerKey+'%'   ]]>
+     <return alias="DeviceProfile" class="com.lifung.dao.DeviceProfile"></return>
+     </sql-query>
+     <sql-query name="com.lifung.dao.DeviceProfile.Storer"> 
+     <![CDATA[ 
+select distinct deviceid
+from dbo.DeviceProfile WITH (NOLOCK)
+WHERE DeviceType = 'CART'
+ ]]>
+     </sql-query>
+     
+     <!-- station -->
+      <sql-query name="com.lifung.dao.DeviceProfile.queryDeviceProfileKey2">
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'station'   
+       and deviceProfileKey=:deviceProfileKey
+  
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.DeviceProfile.deviceId2">
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'station'   
+       and deviceId=:deviceId
+  
+     </sql-query>
+     <sql-query name="com.lifung.dao.DeviceProfile.deviceQuery2">
+        <![CDATA[ SELECT * FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'station' and deviceID like '%'+:storerKey+'%'   ]]>
+     <return alias="DeviceProfile" class="com.lifung.dao.DeviceProfile"></return>
+     </sql-query>
+     <sql-query name="com.lifung.dao.DeviceProfile.Storer2"> 
+     <![CDATA[ 
+select distinct deviceid
+from dbo.DeviceProfile WITH (NOLOCK)
+WHERE DeviceType = 'station'
+ ]]>
+     </sql-query>
+</hibernate-mapping>

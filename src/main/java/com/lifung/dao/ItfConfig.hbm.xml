@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/4/19 ?? 06:11:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.ItfConfig" table="twdtsitf..itfConfig">
+        <composite-id name="id" class="com.lifung.dao.ItfConfigId">
+            <key-property name="dataStream" type="string">
+                <column name="DataStream" length="4" />
+            </key-property>
+            <key-property name="type" type="char">
+                <column name="Type" length="1" />
+            </key-property>
+        </composite-id>
+        <property name="descr" type="string">
+            <column name="Descr" length="60" />
+        </property>
+        <property name="fileLocation" type="string">
+            <column name="FileLocation" length="125" />
+        </property>
+        <property name="outFileLocation" type="string">
+            <column name="OutFileLocation" length="125" />
+        </property>
+        <property name="logLocation" type="string">
+            <column name="LogLocation" length="125" />
+        </property>
+        <property name="failLocation" type="string">
+            <column name="FailLocation" length="125" />
+        </property>
+        <property name="archiveLocation" type="string">
+            <column name="ArchiveLocation" length="125" />
+        </property>
+        <property name="parseratLocation" type="string">
+            <column name="ParseratLocation" length="125" />
+        </property>
+        <property name="preProcess" type="string">
+            <column name="PreProcess" length="125" />
+        </property>
+        <property name="postProcess" type="string">
+            <column name="PostProcess" length="125" />
+        </property>
+        <property name="emailToType" type="java.lang.Character">
+            <column name="EmailToType" length="1" />
+        </property>
+        <property name="emailTo" type="java.lang.Integer">
+            <column name="EmailTo" />
+        </property>
+        <property name="emailToType2" type="java.lang.Character">
+            <column name="EmailToType2" length="1" />
+        </property>
+        <property name="emailTo2" type="java.lang.Integer">
+            <column name="EmailTo2" />
+        </property>
+        <property name="targetDb" type="string">
+            <column name="TargetDB" length="30" />
+        </property>
+        <property name="encodeSp" type="string">
+            <column name="EncodeSP" length="1024" />
+        </property>
+        <property name="postingSp" type="string">
+            <column name="PostingSP" length="1024" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" />
+        </property>
+        <property name="addWho" type="string">
+            <column name="AddWho" length="18" />
+        </property>
+        <property name="interfaceClass" type="string">
+            <column name="InterfaceClass" length="10" />
+        </property>
+        <property name="dataSize" type="int">
+            <column name="DataSize" not-null="true" />
+        </property>
+        <property name="storerKey" type="string">
+            <column name="StorerKey" length="15" />
+        </property>
+        <property name="lastDtsStartDate" type="timestamp">
+            <column name="Last_DTS_StartDate" length="23" />
+        </property>
+        <property name="lastDtsEndDate" type="timestamp">
+            <column name="Last_DTS_EndDate" length="23" />
+        </property>
+        <property name="lastSpStartDate" type="timestamp">
+            <column name="Last_SP_StartDate" length="23" />
+        </property>
+        <property name="lastSpEndDate" type="timestamp">
+            <column name="Last_SP_EndDate" length="23" />
+        </property>
+        <property name="lastFileName" type="string">
+            <column name="Last_FileName" length="125" />
+        </property>
+        <property name="lastRowProcessed" type="java.lang.Integer">
+            <column name="Last_RowProcessed" />
+        </property>
+        <property name="lastRetry" type="java.lang.Integer">
+            <column name="Last_Retry" />
+        </property>
+        <property name="activeFlag" type="java.lang.Character">
+            <column name="ActiveFlag" length="1" />
+        </property>
+        <property name="configSp" type="string">
+            <column name="ConfigSP" length="125" />
+        </property>
+        <property name="convFileLocation" type="string">
+            <column name="ConvFileLocation" length="125" />
+        </property>
+        <property name="convFileArchiveLocation" type="string">
+            <column name="ConvFileArchiveLocation" length="125" />
+        </property>
+        <property name="language" type="string">
+            <column name="Language" length="5" not-null="true" />
+        </property>
+        <property name="fieldMdtcheck" type="string">
+            <column name="FieldMDTCheck" length="1" not-null="true" />
+        </property>
+        <property name="selectUpdateCols" type="string">
+            <column name="SelectUpdateCols" length="1" not-null="true" />
+        </property>
+        <property name="emailAttachment" type="string">
+            <column name="EmailAttachment" length="1" not-null="true" />
+        </property>
+        <property name="maxLength1" type="java.lang.Integer">
+            <column name="MaxLength1" />
+        </property>
+        <property name="maxLength2" type="java.lang.Integer">
+            <column name="MaxLength2" />
+        </property>
+        <property name="maxLength3" type="java.lang.Integer">
+            <column name="MaxLength3" />
+        </property>
+        <property name="cfgDefaultValue" type="string">
+            <column name="CfgDefaultValue" length="1" not-null="true" />
+        </property>
+        <property name="noOfDaysPurge" type="int">
+            <column name="NoOfDaysPurge" not-null="true" />
+        </property>
+        <property name="lastFileNameUploaded" type="string">
+            <column name="Last_FileName_Uploaded" length="125" not-null="true" />
+        </property>
+        <property name="otherServer" type="string">
+            <column name="OtherServer" length="60" not-null="true" />
+        </property>
+        <property name="otherDataBase" type="string">
+            <column name="OtherDataBase" length="60" not-null="true" />
+        </property>
+        <property name="obsolete" type="char">
+            <column name="Obsolete" length="1" not-null="true" />
+        </property>
+        <property name="srcFormat" type="string">
+            <column name="SrcFormat" length="10" />
+        </property>
+        <property name="targetFormat" type="string">
+            <column name="TargetFormat" length="10" />
+        </property>
+        <property name="lastInd" type="string">
+            <column name="LastInd" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" />
+        </property>
+        <property name="emailEncode" type="string">
+            <column name="EmailEncode" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.ItfConfig.storer">
+    <![CDATA[
+    
+     select   storerkey
+     from storer
+      where  type='1'
+    ]]>
+    </sql-query>
+    <sql-query name="com.lifung.dao.ItfConfig.edi">
+    <![CDATA[ 
+     select a.datastream,type,descr,a.PostingSP,b.activeflag,a.storerkey,b.WatcherConfig_Key from twdtsitf..itfconfig a inner join twdtsitf..itfgtwatcherconfig b on
+          a.DataStream=b.DataStream
+          where storerkey =:storerkey
+    ]]>
+     
+    </sql-query>
+    
+    <sql-query name="com.lifung.dao.ItfConfig.ediStorer">
+       <![CDATA[ 
+    select distinct storerkey from twdtsitf..itfconfig 
+        ]]>
+    </sql-query>
+</hibernate-mapping>

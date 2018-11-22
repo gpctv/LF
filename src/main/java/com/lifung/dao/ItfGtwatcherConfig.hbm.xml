@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/4/19 ?? 06:11:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.ItfGtwatcherConfig" table="twdtsitf..ItfGTWatcherConfig">
+        <id name="watcherConfigKey" type="int">
+            <column name="WatcherConfig_Key" />
+            <generator class="assigned" />
+        </id>
+        <property name="datastream" type="string">
+            <column name="Datastream" not-null="true" />
+        </property>
+        <property name="watchFolder" type="string">
+            <column name="Watch_Folder" not-null="true" />
+        </property>
+        <property name="activeFlag" type="string">
+            <column name="ActiveFlag" not-null="true" />
+        </property>
+        <property name="moveToFolder" type="string">
+            <column name="MoveTo_Folder" not-null="true" />
+        </property>
+        <property name="archiveFolder" type="string">
+            <column name="Archive_Folder" />
+        </property>
+        <property name="failFolder" type="string">
+            <column name="Fail_Folder" />
+        </property>
+        <property name="backupFolder" type="string">
+            <column name="Backup_Folder" />
+        </property>
+        <property name="ftpServerId" type="int">
+            <column name="FTP_ServerID" not-null="true" />
+        </property>
+        <property name="ftpWipfolder" type="string">
+            <column name="FTP_WIPFolder" />
+        </property>
+        <property name="ftpFolder" type="string">
+            <column name="FTP_Folder" />
+        </property>
+        <property name="ftpArcFolder" type="string">
+            <column name="FTP_ArcFolder" />
+        </property>
+        <property name="ftpDirection" type="string">
+            <column name="FTP_Direction" />
+        </property>
+        <property name="filePreFixed" type="string">
+            <column name="FilePreFixed" />
+        </property>
+        <property name="fileExt" type="string">
+            <column name="FileExt" />
+        </property>
+        <property name="fileRegExpression" type="string">
+            <column name="FileRegExpression" />
+        </property>
+        <property name="fileCompression" type="string">
+            <column name="FileCompression" />
+        </property>
+        <property name="filePrefixAddOn" type="string">
+            <column name="FilePrefixAddOn" />
+        </property>
+        <property name="fileCompressPreFixed" type="string">
+            <column name="FileCompressPreFixed" />
+        </property>
+        <property name="fileCompressExt" type="string">
+            <column name="FileCompressExt" />
+        </property>
+        <property name="fileCompressRegExpression" type="string">
+            <column name="FileCompressRegExpression" />
+        </property>
+        <property name="fileAttachment" type="string">
+            <column name="FileAttachment" />
+        </property>
+        <property name="mailSubject" type="string">
+            <column name="Mail_Subject" />
+        </property>
+        <property name="mailText1" type="string">
+            <column name="Mail_Text1" />
+        </property>
+        <property name="mailText2" type="string">
+            <column name="Mail_Text2" />
+        </property>
+        <property name="mailTo" type="string">
+            <column name="Mail_To" />
+        </property>
+        <property name="mailCc" type="string">
+            <column name="Mail_CC" />
+        </property>
+        <property name="failMailTo" type="string">
+            <column name="Fail_Mail_To" />
+        </property>
+        <property name="failMailCc" type="string">
+            <column name="Fail_Mail_CC" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" />
+        </property>
+        <property name="addWho" type="string">
+            <column name="AddWho" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" />
+        </property>
+        <property name="dynamicFilename" type="string">
+            <column name="DynamicFilename" />
+        </property>
+        <property name="lastProcessDate" type="timestamp">
+            <column name="LastProcessDate" length="23" not-null="true" />
+        </property>
+        <property name="postingSp" type="string">
+            <column name="PostingSP" />
+        </property>
+        <property name="maxFileCount" type="java.lang.Integer">
+            <column name="MaxFileCount" />
+        </property>
+        <property name="moveToFolder2" type="string">
+            <column name="MoveTo_Folder2" />
+        </property>
+        <property name="moveToFolder3" type="string">
+            <column name="MoveTo_Folder3" />
+        </property>
+        <property name="moveToFolder4" type="string">
+            <column name="MoveTo_Folder4" />
+        </property>
+        <property name="moveToFolder5" type="string">
+            <column name="MoveTo_Folder5" />
+        </property>
+        <property name="autoImportFlag" type="byte">
+            <column name="AutoImportFlag" not-null="true" />
+        </property>
+        <property name="moveToFolder6" type="string">
+            <column name="MoveTo_Folder6" />
+        </property>
+        <property name="moveToFolder7" type="string">
+            <column name="MoveTo_Folder7" />
+        </property>
+        <property name="moveToFolder8" type="string">
+            <column name="MoveTo_Folder8" />
+        </property>
+        <property name="moveToFolder9" type="string">
+            <column name="MoveTo_Folder9" />
+        </property>
+        <property name="moveToFolder10" type="string">
+            <column name="MoveTo_Folder10" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.ItfGtwatcherConfig.datastream">
+    <![CDATA[
+    select *
+    from twdtsitf..itfgtwatcherconfig  where datastream in(
+    select datastream from twdtsitf..itfconfig  where storerkey =:storer)
+ ]]>
+ <return alias="ItfGtwatcherConfig" class="com.lifung.dao.ItfGtwatcherConfig"></return>
+    </sql-query>
+</hibernate-mapping>

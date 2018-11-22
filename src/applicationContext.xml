@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:location="/WEB-INF/jdbc.properties" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+		<property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop>
+            </props>
+        </property>
+	</bean>
+	
+	<bean id="dataSource"
+        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
+        p:password="${jdbc.password}" />
+        
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- DAO -->
+    <bean id="ItfConfigDAO" class="com.lifung.dao.ItfConfigDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    <bean id="Transmitlog3DAO" class="com.lifung.dao.Transmitlog3DAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+     <bean id="ItfGtwatcherConfigDAO" class="com.lifung.dao.ItfGtwatcherConfigDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+     <bean id="DeviceProfileDAO" class="com.lifung.dao.DeviceProfileDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+     <bean id="FacilityDAO" class="com.lifung.dao.FacilityDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    <bean id="ForecastDAO" class="com.lifung.dao.ForecastDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    <!-- BO -->
+    <bean id="FacilityBO" class="com.lifung.bo.FacilityBO">
+    <property name="facility">
+			<ref bean="Facility" />
+		</property> 
+		<property name="facilityDAO">
+			<ref bean="FacilityDAO" />
+		</property> 
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    
+    <bean id="EdiBo" class="com.lifung.bo.EdiBo">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="itfGtwatcherConfigDAO">
+			<ref bean="ItfGtwatcherConfigDAO" />
+		</property>
+    </bean>
+    <bean id="DeviceCartBO" class="com.lifung.bo.DeviceCartBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="deviceProfileDAO">
+			<ref bean="DeviceProfileDAO" />
+		</property>
+		 
+    </bean>
+    <bean id="DeviceCartBO2" class="com.lifung.bo.DeviceCartBO2">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="deviceProfileDAO">
+			<ref bean="DeviceProfileDAO" />
+		</property>
+		 
+    </bean>
+    <bean id="StorerBO" class="com.lifung.bo.StorerBO">
+      <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    <bean id="Transmitlog3BO" class="com.lifung.bo.Transmitlog3BO">
+      <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="transmitlog3DAO">
+			<ref bean="Transmitlog3DAO" />
+		</property>
+    </bean>
+    <bean id="StockBO" class="com.lifung.bo.StockBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+     <bean id="ForecastBO" class="com.lifung.bo.ForecastBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="forecastDAO">
+			<ref bean="ForecastDAO" />
+		</property>
+    </bean>
+    
+    <!-- data bean -->
+    <bean id="ItfConfig" class="com.lifung.dao.ItfConfig">
+    </bean>
+    <bean id="ItfConfigId" class="com.lifung.dao.ItfConfigId">
+    </bean>
+    <bean id="INDEX" class="com.lifung.action.IndexAction" scope="prototype">
+    </bean> 
+	<bean id="SevenEleven" class="com.lifung.qsv.action.SevenEleven" scope="prototype">
+    </bean>
+    <bean id="NineOne" class="com.lifung.qsv.action.NineOne" scope="prototype">
+    </bean>
+    <bean id="Transmitlog3" class="com.lifung.dao.Transmitlog3">
+    </bean>
+    <bean id="Facility" class="com.lifung.dao.Facility">
+    </bean>
+     <bean id="Forecast" class="com.lifung.dao.Forecast">
+     <property name="id">
+			<ref bean="ForecastId" />
+		</property>
+    </bean>
+     <bean id="ForecastId" class="com.lifung.dao.ForecastId">
+    </bean>
+    
+    <!-- Action -->
+    <bean id="TCatEdiAction" class="com.lifung.action.TCatEdiAction" scope="prototype"> 
+     <property name="facilityBO">
+			<ref bean="FacilityBO" />
+		</property>
+    </bean>
+   
+    <bean id="EdiTurnAction" class="com.lifung.action.EdiTurnAction" scope="prototype"> 
+    <property name="ediBo">
+			<ref bean="EdiBo" />
+		</property>
+    </bean>
+    <bean id="DeviceCartAction" class="com.lifung.action.DeviceCartAction" scope="prototype">
+    <property name="DeviceCartBO">
+			<ref bean="DeviceCartBO" />
+		</property>
+		 
+    </bean>
+        <bean id="DeviceCartAction2" class="com.lifung.action.DeviceCartAction2" scope="prototype">
+    <property name="DeviceCartBO2">
+			<ref bean="DeviceCartBO2" />
+		</property>
+		 
+    </bean>
+    <bean id="Transmitlog3Action" class="com.lifung.action.Transmitlog3Action" scope="prototype">
+    <property name="transmitlog3BO">
+			<ref bean="Transmitlog3BO" />
+		</property> 
+		<property name="storerBO">
+			<ref bean="StorerBO" />
+		</property>
+    </bean>
+    <bean id="StockAction" class="com.lifung.action.StockAction" scope="prototype">
+     
+      <property name="stockBO">
+			<ref bean="StockBO" />
+		</property> 
+    </bean>
+    
+    <bean id="ForecastAction" class="com.lifung.action.ForecastAction" scope="prototype">
+     
+      <property name="forecastBo">
+			<ref bean="ForecastBO" />
+		</property> 
+    </bean>
+      
+	</beans>

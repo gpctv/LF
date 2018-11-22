@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/8/31 ?? 11:02:32 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.Facility" table="FACILITY">
+        <id name="facility" type="string">
+            <column name="Facility" />
+            <generator class="assigned" />
+        </id>
+        <property name="descr" type="string">
+            <column name="Descr" not-null="true" />
+        </property>
+        <property name="userDefine01" type="string">
+            <column name="UserDefine01" />
+        </property>
+        <property name="userDefine02" type="string">
+            <column name="UserDefine02" />
+        </property>
+        <property name="userDefine03" type="string">
+            <column name="UserDefine03" />
+        </property>
+        <property name="userDefine04" type="string">
+            <column name="UserDefine04" />
+        </property>
+        <property name="userDefine05" type="string">
+            <column name="UserDefine05" />
+        </property>
+        <property name="userDefine06" type="string">
+            <column name="UserDefine06" />
+        </property>
+        <property name="userDefine07" type="string">
+            <column name="UserDefine07" />
+        </property>
+        <property name="userDefine08" type="string">
+            <column name="UserDefine08" />
+        </property>
+        <property name="userDefine09" type="string">
+            <column name="UserDefine09" />
+        </property>
+        <property name="userDefine10" type="string">
+            <column name="UserDefine10" />
+        </property>
+        <property name="userDefine11" type="string">
+            <column name="UserDefine11" />
+        </property>
+        <property name="userDefine12" type="string">
+            <column name="UserDefine12" />
+        </property>
+        <property name="userDefine13" type="string">
+            <column name="UserDefine13" />
+        </property>
+        <property name="userDefine14" type="string">
+            <column name="UserDefine14" />
+        </property>
+        <property name="userDefine15" type="string">
+            <column name="UserDefine15" />
+        </property>
+        <property name="userDefine16" type="string">
+            <column name="UserDefine16" />
+        </property>
+        <property name="userDefine17" type="string">
+            <column name="UserDefine17" />
+        </property>
+        <property name="userDefine18" type="string">
+            <column name="UserDefine18" />
+        </property>
+        <property name="userDefine19" type="string">
+            <column name="UserDefine19" />
+        </property>
+        <property name="userDefine20" type="string">
+            <column name="UserDefine20" />
+        </property>
+        <property name="addwho" type="string">
+            <column name="Addwho" not-null="true" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" not-null="true" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" not-null="true" />
+        </property>
+        <property name="tmsInterface" type="string">
+            <column name="TMS_Interface" />
+        </property>
+        <property name="address1" type="string">
+            <column name="Address1" />
+        </property>
+        <property name="address2" type="string">
+            <column name="Address2" />
+        </property>
+        <property name="address3" type="string">
+            <column name="Address3" />
+        </property>
+        <property name="address4" type="string">
+            <column name="Address4" />
+        </property>
+        <property name="city" type="string">
+            <column name="City" />
+        </property>
+        <property name="state" type="string">
+            <column name="State" />
+        </property>
+        <property name="zip" type="string">
+            <column name="Zip" />
+        </property>
+        <property name="country" type="string">
+            <column name="Country" />
+        </property>
+        <property name="isocntryCode" type="string">
+            <column name="ISOCntryCode" />
+        </property>
+        <property name="contact1" type="string">
+            <column name="Contact1" />
+        </property>
+        <property name="contact2" type="string">
+            <column name="Contact2" />
+        </property>
+        <property name="phone1" type="string">
+            <column name="Phone1" />
+        </property>
+        <property name="phone2" type="string">
+            <column name="Phone2" />
+        </property>
+        <property name="fax1" type="string">
+            <column name="Fax1" />
+        </property>
+        <property name="fax2" type="string">
+            <column name="Fax2" />
+        </property>
+        <property name="email1" type="string">
+            <column name="Email1" />
+        </property>
+        <property name="email2" type="string">
+            <column name="Email2" />
+        </property>
+        <property name="type" type="string">
+            <column name="Type" not-null="true" />
+        </property>
+        <property name="sqFeet" type="int">
+            <column name="SqFeet" not-null="true" />
+        </property>
+        <property name="longitude" type="string">
+            <column name="Longitude" />
+        </property>
+        <property name="latitude" type="string">
+            <column name="Latitude" />
+        </property>
+        <property name="timeZone" type="string">
+            <column name="TimeZone" />
+        </property>
+        <property name="noOfDoors" type="java.lang.Integer">
+            <column name="NoOfDoors" />
+        </property>
+        <property name="leaseType" type="string">
+            <column name="LeaseType" />
+        </property>
+        <property name="operationHours" type="string">
+            <column name="OperationHours" />
+        </property>
+        <property name="facilityFor" type="string">
+            <column name="FacilityFor" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.Facility.queryFacility"> 
+     <![CDATA[ 
+            select facility.*
+            from facility
+     ]]>
+      <return alias="facility" class="com.lifung.dao.Facility"></return>
+     </sql-query>
+</hibernate-mapping>

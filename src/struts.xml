@@ -1,0 +1,273 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="lifung" namespace="/" extends="struts-default,json-default">
+
+<!-- web redir jsp -->
+  <action name="index" class="INDEX">
+        <result name="SUCCESS">/index.jsp</result>
+  </action>
+  <action name="tcatEdi" class="TCatEdiAction">
+   <result name="success">/WEB-INF/view/EDI/tCatTest.jsp</result>
+  </action>
+  <action name="sevenEleven" class="SevenEleven">
+  <result name="SUCCESS">/WEB-INF/view/test/SevenApi.jsp</result>
+  </action>
+  <action name="nineOne" class="NineOne">
+  <result name="SUCCESS">/WEB-INF/view/test/NineOneAPI.jsp</result>
+  </action>
+  <action name="test" class="NineOne">
+  <result name="SUCCESS">/WEB-INF/view/test/test.jsp</result>
+  </action>
+  
+   <action name="report" class="NineOne"  >
+  <result name="SUCCESS">/WEB-INF/view/test/report.jsp</result>
+  </action>
+  
+   <action name="reportIndex" class="NineOne"  >
+  <result name="SUCCESS">/WEB-INF/view/test/reportIndex.jsp</result>
+  </action>
+
+   <action name="EdiTurn" class="EdiTurnAction">
+   <result name="success">/WEB-INF/view/EDI/ediTurn.jsp</result>
+   </action>
+     <action name="device" class="DeviceCartAction">
+    <result name="success">/WEB-INF/view/device/DeviceCart.jsp</result>
+    </action>
+     <action name="device2" class="DeviceCartAction2">
+    <result name="success">/WEB-INF/view/device/DeviceCart2.jsp</result>
+    </action>
+    <action name="Transmitlog3" class="Transmitlog3Action">
+    <result name="success">/WEB-INF/view/transmiglog3/transmitlog3.jsp</result>
+    </action>
+    <action name="Stock" class="StockAction">
+    <result name="success">/WEB-INF/view/stock/stock.jsp</result>
+    <result name="error">/WEB-INF/view/stock/nonStock.jsp</result>
+    </action>
+    <action name="Forecast" class="ForecastAction">
+    <result name="success">/WEB-INF/view/forecast/forecast.jsp</result> 
+    </action>
+   
+   
+   <!-- query all storer   -->
+    <action name="storer" class="EdiTurnAction" method="queryStorer">
+    <result type="json"></result>
+   </action>
+   <!-- query edi storer -->
+   <action name="ediStorer" class="EdiTurnAction" method="queryEdiStorer">
+   <result type="json"></result>
+   </action>
+   <!-- ediTable -->
+    <action name="ediTable" class="EdiTurnAction" method="queryDataTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json">
+    <param name="root">table</param>
+    </result>
+    </action>
+    <!-- edi update -->
+    <action name="ediTableUpdate" class="EdiTurnAction" method="updateWatcherActiveflag">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json">
+    <param name="root">table</param>
+    </result>
+    </action>
+  <!-- device FN808 -->
+      <action name="deviceQuery" class="DeviceCartAction" method="queryDevice">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json">
+    <param name="root">deviceProfile</param>
+    </result>
+    </action>
+    <!-- device FN805 -->
+         <action name="deviceQuery2" class="DeviceCartAction2" method="queryDevice">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json">
+    <param name="root">deviceProfile</param>
+    </result>
+    </action>
+    <!-- get device car id -->
+     <action name="deviceId" class="DeviceCartAction" method="queryDeviceId">
+    <result type="json"></result>
+   </action>
+   <action name="deviceId2" class="DeviceCartAction2" method="queryDeviceId">
+    <result type="json"></result>
+   </action>
+   <!-- car is Exist -->
+     <action name="isExistDeviceProfileKey" class="DeviceCartAction" method="queryDeviceProfileKey">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"></result>
+   </action>
+    <action name="isExistDeviceProfileKey2" class="DeviceCartAction2" method="queryDeviceProfileKey">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"></result>
+   </action>
+   <!-- car id is exist -->
+     <action name="isExistDeviceId" class="DeviceCartAction" method="isExistDeviceId">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"></result>
+   </action>
+   <action name="isExistDeviceId2" class="DeviceCartAction2" method="isExistDeviceId">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"></result>
+   </action>
+   <!-- car create -->
+   <action name="createCart" class="DeviceCartAction" method="createDeviceProfile"> 
+    <result name="success" type="redirectAction"> <param name="actionName">device</param></result>
+   </action>
+   <action name="createCart2" class="DeviceCartAction2" method="createDeviceProfile">
+    <result name="success" type="redirectAction"> <param name="actionName">device2</param></result>
+   </action>
+   <!-- tcat query address-->
+    <action name="tcatEdiQuery" class="TCatEdiAction" method="sendGet">
+    <result type="json"></result>
+   </action>
+   <!-- tcat query area -->
+   <action name="tcatEdiQuery2" class="TCatEdiAction" method="sendAreaCode">
+    <result type="json"></result>
+   </action>
+   <!-- facility zip code -->
+    <action name="facilityQuery" class="TCatEdiAction" method="queryFacility">
+    <result type="json"></result>
+   </action>
+   <!--<action name="storer" class="Transmitlog3Action" method="queryStorer">
+    <result type="json"></result>
+   </action>-->
+   <!--transmitlog query table  -->
+      <action name="transmitlog3Table" class="Transmitlog3Action" method="queryTransmitlog3">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <!--transmitlog update  -->
+    <action name="transmitlog3Update" class="Transmitlog3Action" method="updateTransmitlog3">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- stock inser sku to env -->
+    <action name="inserSKU" class="StockAction" method="insertSKU">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!--  inser pack to env -->
+    <action name="inserPack" class="StockAction" method="insertPACK">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- inser loc to env -->
+     <action name="insertLOC" class="StockAction" method="insertLOC">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- insert tempstock to env -->
+     <action name="inserTempStock" class="StockAction" method="insertTempStock">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- exec NSP_INSERTSTOCK -->
+    <action name="calcualteNSP" class="StockAction" method="calcualteNSP">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <!-- query storerkey -->
+     <action name="ForecastStorer" class="ForecastAction" method="storerkey">
+    <result type="json"></result>
+    </action>
+      <!-- query table -->
+      <action name="ForecastQuery" class="ForecastAction" method="queryFore">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+     <param name="root">forecastIdList</param>
+    </result>
+    </action>
+    <!-- query storerkey and data have exist -->
+     <action name="ForecastIsExist" class="ForecastAction" method="isExist">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- inser forecast -->
+    <action name="insertForecast" class="ForecastAction" method="insertForecast">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- delete forecast -->
+     <action name="deleteForecast" class="ForecastAction" method="deleteForecast">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- modify forecast -->
+    <action name="modifyForecast" class="ForecastAction" method="modifyForecast">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+ 
+</package>
+</struts>

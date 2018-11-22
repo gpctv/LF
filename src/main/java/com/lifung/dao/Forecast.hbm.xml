@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/11/19 ?? 08:35:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.Forecast" table="TW_LOCAL..FORECAST">
+        <composite-id name="id" class="com.lifung.dao.ForecastId">
+            <key-property name="f_date" type="timestamp">
+                <column name="f_date" length="23" />
+            </key-property>
+            <key-property name="qty" type="java.lang.Long">
+                <column name="qty" precision="18" scale="0" />
+            </key-property>
+            <key-property name="storerkey" type="string">
+                <column name="storerkey" />
+            </key-property>
+        </composite-id>
+    </class>
+     <sql-query name="com.lifung.dao.Forecast.queryFore"> 
+     <![CDATA[ 
+            select FORECAST.*
+            from TW_LOCAL..FORECAST
+            where storerkey=:storerkey
+     ]]>
+      <return alias="FORECAST" class="com.lifung.dao.Forecast"></return>
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.Forecast.storer"> 
+     <![CDATA[ 
+            select distinct storerkey
+            from TW_LOCAL..FORECAST
+     ]]>
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.Forecast.isExis"> 
+     <![CDATA[ 
+             select   count(*)
+            from TW_LOCAL..FORECAST
+			where  f_date =CONVERT(datetime, :date1,111) and storerkey=:storerkey
+
+     ]]>
+     </sql-query>
+</hibernate-mapping>
