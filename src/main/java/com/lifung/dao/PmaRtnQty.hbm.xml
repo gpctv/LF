@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/11/29 ?? 03:38:52 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.PmaRtnQty" table="TW_LOCAL..PMA_RTN_QTY">
+        <id name="carrierReference" type="string">
+            <column name="CarrierReference" />
+            <generator class="assigned" />
+        </id>
+        <property name="qtyExpected" type="java.lang.Long">
+            <column name="QtyExpected" precision="18" scale="0" />
+        </property>
+        <property name="createDateTime" type="timestamp">
+            <column name="CreateDateTime" length="23" />
+        </property>
+        <property name="ipAddress" type="string">
+            <column name="IpAddress" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.PmaRtnQty.queryTable">
+      <![CDATA[
+       select *
+     from(
+          select *,ROW_NUMBER() OVER (ORDER BY CarrierReference desc  )
+          AS RowNum
+          from TW_LOCAL.dbo.PMA_RTN_QTY
+          where  CarrierReference like :carrierRef
+         ) a
+       where a.RowNum >= :start AND a.RowNum <= :end
+       order by  a.RowNum ASC
+          ]]>
+        <return class="com.lifung.dao.PmaRtnQty" alias="pmaRtnQty"></return>
+     </sql-query>
+       <sql-query name="com.lifung.dao.PmaRtnQty.querySize">
+      <![CDATA[
+      select count(*)
+          AS RowNum
+          from TW_LOCAL.dbo.PMA_RTN_QTY
+          where CarrierReference=:carrierRef
+       ]]>
+       </sql-query>
+       <sql-query name="com.lifung.dao.PmaRtnQty.isExis">
+       <![CDATA[
+       	   select count(*)
+           from TW_LOCAL..PMA_RTN_QTY
+           where carrierReference=:carrierRef
+       
+       ]]>
+       
+       
+       </sql-query>
+</hibernate-mapping>

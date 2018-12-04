@@ -46,6 +46,9 @@
     <action name="Forecast" class="ForecastAction">
     <result name="success">/WEB-INF/view/forecast/forecast.jsp</result> 
     </action>
+     <action name="PmaRtnQty" class="PmaRtnQtyAction">
+    <result name="success">/WEB-INF/view/pma/pmaRtnQty.jsp</result> 
+    </action>
    
    
    <!-- query all storer   -->
@@ -261,6 +264,51 @@
     </action>
     <!-- modify forecast -->
     <action name="modifyForecast" class="ForecastAction" method="modifyForecast">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- query pma table -->
+     <action name="queryPmaTable" class="PmaRtnQtyAction" method="queryTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- insert pma table -->
+      <action name="insertPmaTable" class="PmaRtnQtyAction" method="insertTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- modify pma table -->
+      <action name="modifyPmaTable" class="PmaRtnQtyAction" method="modifyTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- delete pma table -->
+      <action name="deletePmaTable" class="PmaRtnQtyAction" method="deleteTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!-- isExist pma -->
+    <action name="carrierIsExist" class="PmaRtnQtyAction" method="isExist">
     <interceptor-ref name="defaultStack"/>
          <interceptor-ref name="json">
             <param name="enableSMD">true</param>

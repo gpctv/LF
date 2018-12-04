@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
 
 import com.lifung.bo.ForecastBO;
@@ -117,6 +120,7 @@ public class ForecastAction extends ActionSupport {
 	@Override
     public String execute() throws Exception {
     	// TODO Auto-generated method stub
+		clientIp();
     	return super.execute();
     }
     
@@ -133,6 +137,7 @@ public class ForecastAction extends ActionSupport {
 	
 	public String queryFore(){
 		try {
+			clientIp();
 		this.forecastIdList=this.forecastBo.queryForecast(this.storerkey);
 		
 		}catch(Exception e) {
@@ -145,6 +150,7 @@ public class ForecastAction extends ActionSupport {
 	
 	public String insertForecast() {
 		try {
+			clientIp();
 			if(this.forecastBo.isExist(this.storerkey, this.date1)) {
 				
 			
@@ -168,7 +174,7 @@ public class ForecastAction extends ActionSupport {
 	public String deleteForecast() {
 		try {
 		  
-			
+			clientIp();
 			this.forecastBo.deleteFore(this.date1, this.storerkey);
 			
 		}catch(Exception e) {
@@ -179,13 +185,23 @@ public class ForecastAction extends ActionSupport {
 	public String modifyForecast() {
 		try {
 		  
-			
+			clientIp();
 			this.forecastBo.modifyFore(this.date1, this.storerkey, this.qty);
 			
 		}catch(Exception e) {
 			LOG.error("#0", e);
 		}
 		return "success";
+	}
+	
+	private void clientIp() {
+		String ipAddress="";
+		HttpServletRequest httpServletRequest =  ServletActionContext.getRequest();;
+		String userIpaddress=httpServletRequest.getHeader("X-Forwarded-For");
+		if(null ==userIpaddress || "".equals(userIpaddress)) {
+			ipAddress = httpServletRequest.getRemoteAddr();
+			}
+		LOG.info("ip address: #0", ipAddress);
 	}
     
 }

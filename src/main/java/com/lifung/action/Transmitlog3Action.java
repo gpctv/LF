@@ -2,6 +2,9 @@ package com.lifung.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
 
 import com.lifung.bean.PageBean;
@@ -155,6 +158,7 @@ public class Transmitlog3Action extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		clientIp();
 		return "success";
 	}
 	
@@ -164,6 +168,7 @@ public class Transmitlog3Action extends ActionSupport {
 	}
 	
 	public String queryTransmitlog3() {
+		clientIp();
 		LOG.debug("test:#0", String.valueOf(this.offset));
 		if(!"".equals(this.storerkey) && null!=this.storerkey) {
 	    PageBean page=new PageBean();
@@ -179,6 +184,7 @@ public class Transmitlog3Action extends ActionSupport {
 	}
 	
 	public String updateTransmitlog3() {
+		clientIp();
 		 if(!"".equals(this.transmitlog3.getTransmitlogkey())&& null!=this.transmitlog3.getTransmitlogkey()) {
 			
 			this.transmitlog3BO.updateTransmitlog3(transmitlog3);
@@ -195,6 +201,14 @@ public class Transmitlog3Action extends ActionSupport {
 		}
 	}
 	
-	
+	private void clientIp() {
+		String ipAddress="";
+		HttpServletRequest httpServletRequest =  ServletActionContext.getRequest();;
+		String userIpaddress=httpServletRequest.getHeader("X-Forwarded-For");
+		if(null ==userIpaddress || "".equals(userIpaddress)) {
+			ipAddress = httpServletRequest.getRemoteAddr();
+			}
+		LOG.info("ip address: #0", ipAddress);
+	}
 
 }

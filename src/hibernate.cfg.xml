@@ -10,5 +10,6 @@
         <mapping resource="com/lifung/dao/DeviceProfile.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/Facility.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/Forecast.hbm.xml"></mapping>
+        <mapping resource="com/lifung/dao/PmaRtnQty.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

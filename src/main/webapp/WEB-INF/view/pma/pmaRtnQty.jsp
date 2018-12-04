@@ -5,69 +5,62 @@
 <s:include value="/public.jsp"></s:include>
 <html>
 <head> 
-<script type="text/javascript" src="resource/js/forecast/forecast.js"></script>
+<script type="text/javascript" src="resource/js/pma/pmaRtnQty.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
-<title>Forecast</title>
+<title>PMA RTN QTY</title>
 </head>
 <body>
 <div class="container-fluid">
 <div class="row">
 <div class="col-sm-3">
-<p>Forecast</p><img src="resource/image/logo.jpg" alt="Smiley face" height="25" />
+<p>PUMA 授權碼預計退回</p><img src="resource/image/logo.jpg" alt="Smiley face" height="25" />
 </div>
-<div class="col-sm-6">
-<select id="myselect" data-live-search="true" class="selectpicker" >
-    
-</select><br/>
+<div class="col-sm-3 ">
+退貨授權碼:<input type="text" class="form-control" id="CarrierRef" />
 <button id="query">查詢</button> 
 </div>
-<div class="col-sm-3">
- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">新增</button>
+<div class="col-sm-4 offset-md-2">
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">新增</button>
 </div>
 </div>
 <div class="row">
 <div class="col-sm-3">
 </div>
 <div class="col-sm-6">
-<table data-toggle="table" id="ForeTable" data-method="post" data-data-type="json" data-side-pagination="server" 
-data-content-type="application/json" data-query-params="queryParams">
+<table data-classes="table table-hover" data-toggle="table" id="PMATable" data-method="post" data-data-type="json" data-side-pagination="server" 
+data-page-number="1" data-page-size="10" data-page-list="[10, 25, 50, 100]" data-pagination="true" data-content-type="application/json" data-query-params="queryParams">
 <thead>
         <tr>
-            <th data-field="f_date" data-formatter="formatterDate">日期</th>
-            <th data-field="qty">數量</th> 
-            <th data-field="storerkey">Storerkey</th> 
+            
+            <th data-field="carrierReference">授權碼</th>
+            <th data-field="qtyExpected">數量</th>  
             <th data-formatter="modify"></th>
             <th data-formatter="delete1"></th>
         </tr>
     </thead>
-</table></div>
-<div class="col-sm-3"></div>
+</table>
 </div>
-<div class="row">
-<div class="col-sm-3">
-</div>
-<div class="col-sm-6">
 
-</div>
 <div class="col-sm-3">
+</div>
 </div>
 
 </div>
-</div>
+<!-- dialog add -->
 
 <div class="container">
 <div class="modal fade" id="myModal" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
-<form class="registerForm" id="createFore" action="" method="post">
+<form class="registerForm" id="createFore"  method="post">
 <div class="modal-header">
 
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">新增FORECAST</h4>
+          <h4 class="modal-title">新增預計退回數量</h4>
 </div>
 
 <div class="modal-body">
@@ -75,15 +68,11 @@ data-content-type="application/json" data-query-params="queryParams">
           
           <i class="fas fa-street-view"></i>
           <div class="form-group">
-         <font color="red">*</font>forecast date(YYYY-MM-DD):   <input type="text" class="form-control" name="ForecastId.fDate" id="fDate"/> 
+         <font color="red">*</font>授權碼:   <input type="text" class="form-control" name="carrierReference" id="carrierReference"/> 
          </div>
         <div class="form-group">
-          <font color="red">*</font>qty: <input type="text" class="form-control" name="ForecastId.qty" id="qty" /> 
+          <font color="red">*</font>預計退回數量: <input type="text" class="form-control" name="qty" id="qty" /> 
           </div>
-          <div class="form-group">
-          <font color="red">*</font>storerkey:<input type="text" class="form-control" name="ForecastId.storerkey" id="storerkey"/> 
-          </div>
-            
            
         </div>
         <div class="modal-footer">
@@ -96,15 +85,16 @@ data-content-type="application/json" data-query-params="queryParams">
  
 </div>
 </div>
+<!--MODIFY DIALOG-->
 <div class="container">
 <div class="modal fade" id="myModal2" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
-<form class="registerForm2" id="createFore2" action="" method="post">
+<form class="registerForm2" id="modify2"  method="post">
 <div class="modal-header">
 
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">修改FORECAST</h4>
+          <h4 class="modal-title">修正預計退回數量</h4>
 </div>
 
 <div class="modal-body">
@@ -112,15 +102,11 @@ data-content-type="application/json" data-query-params="queryParams">
           
           <i class="fas fa-street-view"></i>
           <div class="form-group">
-         <font color="red">*</font>forecast date(YYYY-MM-DD):   <input type="text" disabled class="form-control" name="ForecastId2.fDate" id="fDate2"/> 
+         <font color="red">*</font>授權碼:   <input type="text" disabled class="form-control" name="carrierReference2" id="carrierReference2"/> 
          </div>
         <div class="form-group">
-          <font color="red">*</font>qty: <input type="text" class="form-control" name="ForecastId2.qty" id="qty2" /> 
+          <font color="red">*</font>預計退回數量: <input type="text" class="form-control" name="qty2" id="qty2" /> 
           </div>
-          <div class="form-group">
-          <font color="red">*</font>storerkey:<input type="text" class="form-control" name="ForecastId2.storerkey" id="storerkey2" disabled/> 
-          </div>
-            
            
         </div>
         <div class="modal-footer">

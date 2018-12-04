@@ -62,8 +62,7 @@
     </class>
     <!-- cart -->
      <sql-query name="com.lifung.dao.DeviceProfile.queryDeviceProfileKey">
-       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'CART'   
-       and deviceProfileKey=:deviceProfileKey
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE  deviceProfileKey=:deviceProfileKey
   
      </sql-query>
      
@@ -86,8 +85,7 @@ WHERE DeviceType = 'CART'
      
      <!-- station -->
       <sql-query name="com.lifung.dao.DeviceProfile.queryDeviceProfileKey2">
-       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE DeviceType = 'station'   
-       and deviceProfileKey=:deviceProfileKey
+       SELECT count(*) a1 FROM dbo.DeviceProfile WITH (NOLOCK) WHERE  deviceProfileKey=:deviceProfileKey
   
      </sql-query>
      

@@ -66,6 +66,11 @@
 			<ref bean="sessionFactory" />
 		</property>
     </bean>
+    <bean id="PmaRtnQtyDAO" class="com.lifung.dao.PmaRtnQtyDAO">
+     <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
     <!-- BO -->
     <bean id="FacilityBO" class="com.lifung.bo.FacilityBO">
     <property name="facility">
@@ -131,6 +136,14 @@
 			<ref bean="ForecastDAO" />
 		</property>
     </bean>
+    <bean id="PmaBO" class="com.lifung.bo.PmaBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="pmaRtnQtyDAO">
+			<ref bean="PmaRtnQtyDAO" />
+		</property>
+    </bean>
     
     <!-- data bean -->
     <bean id="ItfConfig" class="com.lifung.dao.ItfConfig">
@@ -153,6 +166,8 @@
 		</property>
     </bean>
      <bean id="ForecastId" class="com.lifung.dao.ForecastId">
+    </bean>
+    <bean id="PmaRtnQty" class="com.lifung.dao.PmaRtnQty">
     </bean>
     
     <!-- Action -->
@@ -199,6 +214,12 @@
       <property name="forecastBo">
 			<ref bean="ForecastBO" />
 		</property> 
+    </bean>
+    <bean id="PmaRtnQtyAction" class="com.lifung.action.PmaRtnQtyAction" scope="prototype">
+     <property name="pmaBo">
+     <ref bean="PmaBO"></ref>
+     </property>
+        
     </bean>
       
 	</beans>

@@ -36,7 +36,7 @@ $(document).ready(function () {
 	                    },
 	                    remote:{
 	                    	message: '不允許重複',
-	                        url:CONTEXT_PATH+ '/isExistDeviceProfileKey2',
+	                        url:CONTEXT_PATH+ '/isExistDeviceProfileKey',
 	                        type:'POST',
 	                        data:  function(validator){
 	                        	return{

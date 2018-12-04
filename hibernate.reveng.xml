@@ -7,8 +7,6 @@
 		<sql-type jdbc-type="NVARCHAR" hibernate-type="string" />
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
-	 
-
-
+ 
 
 </hibernate-reverse-engineering>

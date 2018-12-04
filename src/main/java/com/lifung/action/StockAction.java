@@ -2,6 +2,8 @@ package com.lifung.action;
 
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.lifung.bo.StockBO;
@@ -102,6 +104,7 @@ public String execute()   {
 	// TODO Auto-generated method stub
 	try {
 		if(stockBO.condition(ServletActionContext.getServletContext())) {
+			clientIp();
 			return "success";
 		}else {
 			return "error";
@@ -115,6 +118,7 @@ public String execute()   {
 }	
 
 public String insertSKU() {
+	clientIp();
     this.skuInsert=0;
 	if(null != this.storerkey && (!"".equals(this.storerkey.trim()))) {
 	int i=this.stockBO.insertSKU(this.storerkey);
@@ -127,6 +131,7 @@ public String insertSKU() {
 }
 
 public String insertPACK() {
+	clientIp();
 	this.packInsert=0;
 	if(null != this.storerkey && (!"".equals(this.storerkey.trim()))) {
 		int i=this.stockBO.insertPACK(this.storerkey);
@@ -138,6 +143,7 @@ public String insertPACK() {
 }
 
 public String insertTempStock() {
+	clientIp();
 	this.stockInsert=0;
 	if(this.validation(this.sku)) {
 	if(null != this.storerkey && (!"".equals(this.storerkey.trim()))) {
@@ -153,6 +159,7 @@ public String insertTempStock() {
 	return "success";
 }
 public String calcualteNSP() {
+	clientIp();
 	if(null != this.storerkey && (!"".equals(this.storerkey.trim()))) {
 		int i=this.stockBO.execNSP();
 		LOG.info("#0", String.valueOf(i));
@@ -163,6 +170,7 @@ public String calcualteNSP() {
 
 public String insertLOC() {
 	this.locInsert=0;
+	clientIp();
 	if(null != this.facility && (!"".equals(this.facility.trim()))) {
 		int i=this.stockBO.insertLOC  (this.facility);
 		this.locInsert=i;
@@ -184,5 +192,15 @@ private boolean validation(String sku) {
 		return false;
 	}
 	}
+}
+
+private void clientIp() {
+	String ipAddress="";
+	HttpServletRequest httpServletRequest =  ServletActionContext.getRequest();;
+	String userIpaddress=httpServletRequest.getHeader("X-Forwarded-For");
+	if(null ==userIpaddress || "".equals(userIpaddress)) {
+		ipAddress = httpServletRequest.getRemoteAddr();
+		}
+	LOG.info("ip address: #0", ipAddress);
 }
 }
