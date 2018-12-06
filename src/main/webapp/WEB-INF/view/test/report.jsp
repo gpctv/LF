@@ -10,18 +10,22 @@
  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
+<style>
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+</style>
 <title>Report View</title>
 </head>
 <body>
-<div id="show">
+ 
  
 <img id="reportImg" class="image" src="
 "></img>
 
-<iframe src="" width="9999" height="9999">
-<p> </p>
-</iframe>
-</div>
+ 
 <p id="times"></p>
 </body>
 </html>

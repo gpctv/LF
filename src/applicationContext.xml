@@ -71,6 +71,17 @@
 			<ref bean="sessionFactory" />
 		</property>
     </bean>
+     <bean id="InLineDAO" class="com.lifung.dao.InLineDAO">
+     <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+     <bean id="OutLineDAO" class="com.lifung.dao.OutLineDAO">
+     <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
+    
     <!-- BO -->
     <bean id="FacilityBO" class="com.lifung.bo.FacilityBO">
     <property name="facility">
@@ -144,9 +155,16 @@
 			<ref bean="PmaRtnQtyDAO" />
 		</property>
     </bean>
+    <bean id="FileBO" class="com.lifung.bo.FileBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	 
+    </bean>
     
     <!-- data bean -->
     <bean id="ItfConfig" class="com.lifung.dao.ItfConfig">
+    <property name="id"><ref bean="ItfConfigId"/></property>
     </bean>
     <bean id="ItfConfigId" class="com.lifung.dao.ItfConfigId">
     </bean>
@@ -169,7 +187,15 @@
     </bean>
     <bean id="PmaRtnQty" class="com.lifung.dao.PmaRtnQty">
     </bean>
-    
+      <bean id="OutLine" class="com.lifung.dao.OutLine">
+       <property name="id">
+			<ref bean="OutLineId" />
+		</property>
+    </bean>
+    <bean id="OutLineId" class="com.lifung.dao.OutLineId">
+    </bean>
+      <bean id="InLine" class="com.lifung.dao.InLine">
+    </bean>
     <!-- Action -->
     <bean id="TCatEdiAction" class="com.lifung.action.TCatEdiAction" scope="prototype"> 
      <property name="facilityBO">
@@ -218,6 +244,12 @@
     <bean id="PmaRtnQtyAction" class="com.lifung.action.PmaRtnQtyAction" scope="prototype">
      <property name="pmaBo">
      <ref bean="PmaBO"></ref>
+     </property>
+        
+    </bean>
+     <bean id="FileAction" class="com.lifung.action.FileAction" scope="prototype">
+     <property name="fileBO">
+     <ref bean="FileBO"></ref>
      </property>
         
     </bean>

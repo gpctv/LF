@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/12/5 ?? 02:48:01 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.OutLine" table="twdtsitf..out_line">
+        <composite-id name="id" class="com.lifung.dao.OutLineId">
+            <key-property name="fileKey" type="int">
+                <column name="file_key" />
+            </key-property>
+            <key-property name="seqNo" type="int">
+                <column name="SeqNo" />
+            </key-property>
+        </composite-id>
+        <property name="dataStream" type="string">
+            <column name="DataStream" length="10" not-null="true" />
+        </property>
+        <property name="attachmentId" type="java.lang.Integer">
+            <column name="AttachmentID" />
+        </property>
+        <property name="fileName" type="string">
+            <column name="FileName" length="125" />
+        </property>
+        <property name="status" type="char">
+            <column name="Status" length="1" not-null="true" />
+        </property>
+        <property name="lineText" type="string">
+            <column name="LineText" length="6000" />
+        </property>
+        <property name="errMsg" type="string">
+            <column name="ErrMsg" length="215" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" not-null="true" />
+        </property>
+        <property name="sourceKey" type="string">
+            <column name="SourceKey" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" length="18" />
+        </property>
+        <property name="lineTextUnicode" type="string">
+            <column name="LineTextUnicode" />
+        </property>
+        <property name="archiveCop" type="string">
+            <column name="ArchiveCop" />
+        </property>
+        <property name="trafficCop" type="string">
+            <column name="TrafficCop" />
+        </property>
+    </class>
+    
+    <sql-query name="com.lifung.dao.OutLine.query">
+      <![CDATA[
+      
+ select *
+     from(
+          select d.File_Key,d.datastream,d.filename,e.status,d.try,e.AddDate,e.LineText,e.ErrMsg,e.LineTextUnicode,ROW_NUMBER() OVER (ORDER BY e.adddate desc ,d.filename DESC)
+          AS RowNum
+          from twdtsitf..out_file(nolock) d inner join twdtsitf..out_line(nolock) e
+		  on d.datastream=e.DataStream
+          where  d.datastream=:datastream and  e.adddate   between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
+         ) a
+       where a.RowNum >= :start AND a.RowNum <= :end
+       order by  a.RowNum ASC
+       ]]>
+        
+     </sql-query>
+     <sql-query name="com.lifung.dao.OutLine.querySize">
+      <![CDATA[
+      
+            select count(*) RowNum
+          from twdtsitf..out_file(nolock) d inner join twdtsitf..out_line(nolock) e
+		  on d.datastream=e.DataStream
+          where  d.datastream=:datastream and e.adddate  between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
+        
+       ]]>
+        
+     </sql-query>
+</hibernate-mapping>

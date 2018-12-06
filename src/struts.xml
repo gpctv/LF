@@ -49,7 +49,9 @@
      <action name="PmaRtnQty" class="PmaRtnQtyAction">
     <result name="success">/WEB-INF/view/pma/pmaRtnQty.jsp</result> 
     </action>
-   
+    <action name="inOutfile" class="FileAction">
+    <result name="success">/WEB-INF/view/ediFile/inOutFile.jsp</result> 
+    </action>
    
    <!-- query all storer   -->
     <action name="storer" class="EdiTurnAction" method="queryStorer">
@@ -316,6 +318,23 @@
     <result type="json"> 
     </result>
     </action>
- 
+    <!-- datastream query -->
+    <action name="dataStreamQuery" class="FileAction" method="queryStorerKey">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <!--query fileTable-->
+ <action name="queryFileTable" class="FileAction" method="queryFileTable">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
 </package>
 </struts>

@@ -20,7 +20,8 @@ $(document).ready(function () {
 	$('#query').click(function(){
 		 
 		$('#ediTable').bootstrapTable("refresh",{
-   		 url:CONTEXT_PATH+'/transmitlog3Table' 
+   		 url:CONTEXT_PATH+'/transmitlog3Table' ,
+   		pageNumber:1 //查詢後初始化為第一頁
    		 
    	 });  
 	});
@@ -45,12 +46,12 @@ $(document).ready(function () {
  		   	 });  
 		})
 	});
-	$('#ediTable').on('page-change.bs.table', function (e, arg1) {
-		$('#ediTable').bootstrapTable("refresh",{
-	   		 url:CONTEXT_PATH+'/transmitlog3Table' 
-	   		 
-	   	 });   
-	});
+//	$('#ediTable').on('page-change.bs.table', function (e, arg1) {
+//		$('#ediTable').bootstrapTable("refresh",{
+//	   		 url:CONTEXT_PATH+'/transmitlog3Table' 
+//	   		 
+//	   	 });   
+//	});
 	
  
 	

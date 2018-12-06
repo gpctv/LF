@@ -66,7 +66,7 @@ $(document).ready(function () {
 		 
 		$('#PMATable').bootstrapTable("refresh",{
    		 url:CONTEXT_PATH+'/queryPmaTable' 
-   		 
+   		 ,pageNumber:1 //查詢後初始化為第一頁
    	 });  
 	});
 	

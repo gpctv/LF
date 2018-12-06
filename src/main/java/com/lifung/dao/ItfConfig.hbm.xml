@@ -144,9 +144,9 @@
         <property name="otherDataBase" type="string">
             <column name="OtherDataBase" length="60" not-null="true" />
         </property>
-        <property name="obsolete" type="char">
+        <!-- <property name="obsolete" type="char">
             <column name="Obsolete" length="1" not-null="true" />
-        </property>
+        </property> -->
         <property name="srcFormat" type="string">
             <column name="SrcFormat" length="10" />
         </property>
@@ -188,4 +188,9 @@
     select distinct storerkey from twdtsitf..itfconfig 
         ]]>
     </sql-query>
+    
+     <sql-query name="com.lifung.dao.ItfConfig.query">
+     select * from twdtsitf..itfconfig  where storerkey =:storerkey 
+     <return alias="itfConfig" class="com.lifung.dao.ItfConfig"></return>
+     </sql-query>
 </hibernate-mapping>

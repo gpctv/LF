@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/12/5 ?? 03:18:26 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.InLine" table="twdtsitf..IN_LINE">
+        <id name="seqNo" type="int">
+            <column name="SeqNo" />
+            <generator class="assigned" />
+        </id>
+        <property name="fileKey" type="int">
+            <column name="File_Key" not-null="true" />
+        </property>
+        <property name="dataStream" type="string">
+            <column name="DataStream" length="10" not-null="true" />
+        </property>
+        <property name="attachmentId" type="java.lang.Integer">
+            <column name="AttachmentID" />
+        </property>
+        <property name="fileName" type="string">
+            <column name="FileName" length="125" />
+        </property>
+        <property name="status" type="char">
+            <column name="Status" length="1" not-null="true" />
+        </property>
+        <property name="lineText" type="string">
+            <column name="LineText" length="6000" />
+        </property>
+        <property name="errMsg" type="string">
+            <column name="ErrMsg" length="215" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" not-null="true" />
+        </property>
+        <property name="lineTextUnicode" type="string">
+            <column name="LineTextUnicode" />
+        </property>
+        <property name="refKey1" type="string">
+            <column name="RefKey1" not-null="true" />
+        </property>
+        <property name="refKey2" type="string">
+            <column name="RefKey2" not-null="true" />
+        </property>
+        <property name="refKey4" type="string">
+            <column name="RefKey4" not-null="true" />
+        </property>
+        <property name="refKey5" type="string">
+            <column name="RefKey5" not-null="true" />
+        </property>
+        <property name="refKey3" type="string">
+            <column name="RefKey3" not-null="true" />
+        </property>
+        <property name="archiveCop" type="string">
+            <column name="ArchiveCop" />
+        </property>
+        <property name="trafficCop" type="string">
+            <column name="TrafficCop" />
+        </property>
+        <property name="lineTextOriginal" type="string">
+            <column name="LineText_Original" />
+        </property>
+    </class>
+    
+    <sql-query name="com.lifung.dao.InLine.query">
+      <![CDATA[
+      
+ select *
+     from(
+          select d.File_Key,d.datastream,d.filename,e.status,d.try,e.AddDate,e.LineText,e.ErrMsg,e.LineTextUnicode,ROW_NUMBER() OVER (ORDER BY e.adddate desc ,d.filename DESC)
+          AS RowNum
+          from twdtsitf..in_file(nolock) d inner join twdtsitf..in_line(nolock) e
+		  on d.datastream=e.DataStream
+          where  d.datastream=:datastream and   e.adddate   between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
+         ) a
+       where a.RowNum >= :start AND a.RowNum <= :end
+       order by  a.RowNum ASC
+       ]]>
+        
+     </sql-query>
+     <sql-query name="com.lifung.dao.InLine.querySize">
+      <![CDATA[
+      
+            select count(*) RowNum
+          from twdtsitf..in_file(nolock) d inner join twdtsitf..in_line(nolock) e
+		  on d.datastream=e.DataStream
+          where  d.datastream=:datastream and   e.adddate   between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
+        
+       ]]>
+        
+     </sql-query>
+</hibernate-mapping>
