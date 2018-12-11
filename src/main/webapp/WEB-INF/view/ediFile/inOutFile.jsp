@@ -12,58 +12,85 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>InFile Data</title>
 </head>
-<body>
-<div class="container-fluid">
+<body> 
+ 
 <div class="row">
-<div class="col-sm-3  ">
+ <div class="col-sm-3">
 
 </div>
-<div class="col-sm-3  ">
-Storerkey:
-<select id="myselect" data-live-search="true" class="selectpicker" >
-    
-</select> <br/>
-DataStream:
-<select id="myselect2" data-live-search="true" class="selectpicker" >
-    
-</select> <br/>
+<div class="col-sm-6">
+
 </div>
 <div class="col-sm-3">
 
-上午/下午:
+</div>
+
+</div>
+<div class="row">
+<div class="col-sm-2">
+</div>
+<div class="col-sm-9">
+<table class="table">
+<tbody>
+<tr>
+ <td>Storerkey:
+<select id="myselect" data-live-search="true" class="selectpicker" > 
+</select></td>
+ <td>DataStream:
+<select id="myselect2" data-live-search="true" class="selectpicker" >
+</select>
+    </td>
+   <td>上午/下午:
 <select class="selectpicker" id="splitTime">
   <option value="morning">上午</option>
   <option value="noon">下午</option> 
-</select><br/>
+</select></td>
+</tr>
+<td>
 status:
 <select class="selectpicker" id="status1">
   <option value="0">0</option>
   <option value="5">5</option> 
   <option value="9">9</option> 
 </select> 
-</div>
-<div class="col-sm-3">
-
-</div>
-</div>
-<div class="row">
-<div class="col-sm-3  ">
-
-</div>
+</td><td><form class="registerForm" id="register" >
+<div class="form-group">  <div class="col-sm-5"><label class="control-label">adddate(YYYYMMDD):</label> </div><div class="col-sm-6"><input type="text" name="adddate" class="form-control input-sm" id="adddate" /></div></div>   
+</form></td><td> <button id="query" type="button" class="btn btn-primary">查詢</button> <a href="#" data-toggle="collapse" data-target="#demo">進階查詢</a>
+ </td></tr>  
  
-<div class="col-sm-6 ">
-<form class="registerForm" id="register" >
-<div class="form-group"><div class="col-sm-3"><label class="control-label">adddate(YYYYMMDD):</label></div><div class="col-sm-3"><input type="text" name="adddate" class="form-control input-sm" id="adddate" /></div></div>   
-</form>
-<button id="query" type="button" class="btn btn-primary">查詢</button> 
+</tbody>
+</table>
+
 </div>
-<div class="col-sm-3  ">
+ <div class="col-sm-1">
 
 </div>
 </div>
 <div class="row">
 <div class="col-sm-2">
 
+</div>
+
+<div class="col-sm-9">
+
+ <div id="demo" class="collapse">
+<table class="table">
+<tbody>
+<tr/>
+<td> LineText: <input type="text" name="lineText" class="form-control input-sm" id="lineText" /></td>
+<td> LineTextUnicode: <input type="text" name="lineTextUnicode" class="form-control input-sm" id="lineTextUnicode" /></td>
+<td>   fileName:  <input type="text" name="filename" class="form-control input-sm" id="filename" /> 
+ </td>
+</tbody>
+</table>
+</div> 
+</div>
+ <div class="col-sm-1">
+
+</div>
+</div>
+<div class="row">
+<div class="col-sm-2"> 
 </div>
 <div class="col-sm-9">
 
@@ -79,6 +106,7 @@ data-page-list="[10, 25, 50, 100]" data-pagination="true" data-classes="table ta
                <th data-field="lineText" >LineText</th>
                 <th data-field="errMsg">ErrMsg</th>
                  <th data-field="adddate" >addDate</th> 
+                  <th data-field="lineTextUnicode" >lineTextUnicode</th>   
         </tr>
     </thead>
 </table>
@@ -87,6 +115,6 @@ data-page-list="[10, 25, 50, 100]" data-pagination="true" data-classes="table ta
 
 </div>
 </div>
-</div>
+ 
 </body>
 </html>

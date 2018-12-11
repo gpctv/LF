@@ -65,7 +65,7 @@ data-content-type="application/json" data-query-params="queryParams">
 <div class="modal-body">
           <p>設定805車子</p> 
           
-          <i class="fas fa-dolly-flatbed fa-3x"></i>
+          <i class="fas fa-shipping-fast fa-3x"></i>
           <div class="form-group">
          <font color="red">*</font>deviceProfileKey:   <input type="text" class="form-control" name="deviceProfileKey" id="deviceProfileKey"/> 
          </div>

@@ -61,9 +61,9 @@
           select d.File_Key,d.datastream,d.filename,e.status,d.try,e.AddDate,e.LineText,e.ErrMsg,e.LineTextUnicode,ROW_NUMBER() OVER (ORDER BY e.adddate desc ,d.filename DESC)
           AS RowNum
           from twdtsitf..out_file(nolock) d inner join twdtsitf..out_line(nolock) e
-		  on d.datastream=e.DataStream
+		  on d.datastream=e.DataStream and d.file_key=e.File_Key
           where  d.datastream=:datastream and  e.adddate   between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
-         ) a
+          and LineText like :lineText and LineTextUnicode like :lineTextUnicode and e.Filename like :filename) a
        where a.RowNum >= :start AND a.RowNum <= :end
        order by  a.RowNum ASC
        ]]>
@@ -74,9 +74,9 @@
       
             select count(*) RowNum
           from twdtsitf..out_file(nolock) d inner join twdtsitf..out_line(nolock) e
-		  on d.datastream=e.DataStream
+		  on d.datastream=e.DataStream and d.file_key=e.File_Key
           where  d.datastream=:datastream and e.adddate  between  convert(datetime, :time1, 121)   and convert(datetime, :time2, 121)  and e.status=:status
-        
+           and LineText like :lineText and LineTextUnicode like :lineTextUnicode and e.Filename like :filename
        ]]>
         
      </sql-query>

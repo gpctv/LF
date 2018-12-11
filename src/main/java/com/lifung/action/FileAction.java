@@ -27,22 +27,24 @@ public class FileAction extends ActionSupport {
 	private int offset;
 	private int limit;
 	private List<FileBean> fileBeanList;
-	private String datastream;
-	private String adddate;
-	private String type;
+	 
 	private int total;
 	private String times;
-	private String status;
+	 
+	private FileBean fileBean;
+	 
 	
 	
 
-	public String getStatus() {
-		return status;
+	public FileBean getFileBean() {
+		return fileBean;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setFileBean(FileBean fileBean) {
+		this.fileBean = fileBean;
 	}
+
+	 
 
 	public String getTimes() {
 		return times;
@@ -60,29 +62,8 @@ public class FileAction extends ActionSupport {
 		this.total = total;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getDatastream() {
-		return datastream;
-	}
-
-	public void setDatastream(String datastream) {
-		this.datastream = datastream;
-	}
-
-	public String getAdddate() {
-		return adddate;
-	}
-
-	public void setAdddate(String adddate) {
-		this.adddate = adddate;
-	}
+ 
+ 
 	@JSON(name="rows")
 	public List<FileBean> getFileBeanList() {
 		return fileBeanList;
@@ -154,37 +135,38 @@ public class FileAction extends ActionSupport {
 	public String queryFileTable() {
 		try {
 			clientIp();
-			LOG.info("query #0", this.type); 
+			LOG.info("query #0", this.fileBean.getType()); 
+			LOG.info("query file #0", fileBean.getAdddate());
 			PageBean page=new PageBean();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd");
-			if("E".equals(this.type)) {
+			if("E".equals(fileBean.getType())) {
 			
 			page.setLimit(this.limit);
 			page.setOffset(this.offset);
 			 
-			if("".equals(this.adddate)||null==this.adddate) {
-				this.adddate=sdf.format(Calendar.getInstance().getTime());
+			if("".equals(fileBean.getAdddate())||null==fileBean.getAdddate()) {
+				fileBean.setAdddate(sdf.format(Calendar.getInstance().getTime()));
 			}else {
-				this.adddate=sdf.format(sdf2.parse(this.adddate));
+				fileBean.setAdddate( sdf.format(sdf2.parse(fileBean.getAdddate())));
 			}
 			
-			if(!"".equals(this.datastream)&&null!=this.datastream) {
-				this.fileBeanList=this.fileBO.queryOut(this.datastream, this.adddate, page,this.times,this.status);
-				this.total=this.fileBO.queryOutSize(this.datastream, this.adddate,this.times,this.status);
+			if(!"".equals(fileBean.getDatastream())&&null!=fileBean.getDatastream()) {
+				this.fileBeanList=this.fileBO.queryOut(this.fileBean, page,this.times );
+				this.total=this.fileBO.queryOutSize(this.fileBean,this.times );
 			}
 			}else {
 				page.setLimit(this.limit);
 				page.setOffset(this.offset);
 				
-				if("".equals(this.adddate)||null==this.adddate) {
-					this.adddate=sdf.format(Calendar.getInstance().getTime());
+				if("".equals(this.fileBean.getAdddate())||null==this.fileBean.getAdddate()) {
+					this.fileBean.setAdddate(sdf.format(Calendar.getInstance().getTime()))  ;
 				}else {
-				this.adddate=sdf.format(sdf2.parse(this.adddate));
+					this.fileBean.setAdddate(sdf.format(sdf2.parse(this.fileBean.getAdddate())));
 				}
-				if(!"".equals(this.datastream)&&null!=this.datastream) {
-					this.fileBeanList=this.fileBO.queryIn(this.datastream, this.adddate, page,this.times,this.status);
-					this.total=this.fileBO.queryInSize(this.datastream, this.adddate,this.times,this.status);
+				if(!"".equals(this.fileBean.getDatastream())&& null!=this.fileBean.getDatastream()) {
+					this.fileBeanList=this.fileBO.queryIn(this.fileBean, page,this.times );
+					this.total=this.fileBO.queryInSize(this.fileBean,this.times );
 				}
 			}
 		  

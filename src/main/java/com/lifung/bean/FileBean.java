@@ -11,6 +11,14 @@ private String lineText;
 private String errMsg;
 private String lineTextUnicode;
 private String rowNum;
+private String type;
+
+public String getType() {
+	return type;
+}
+public void setType(String type) {
+	this.type = type;
+}
 public String getFileKey() {
 	return fileKey;
 }

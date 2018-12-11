@@ -253,5 +253,8 @@
      </property>
         
     </bean>
+     <bean id="Big5Action" class="com.lifung.action.Big5Action" scope="prototype">
+     
+    </bean>
       
 	</beans>

@@ -91,15 +91,25 @@ function queryTable(){
    		pageNumber:1 //查詢後初始化為第一頁
    	 });  
 }
+ 
 
 function queryParams(params) { 
+	
+	var fileBean={datastream:$('#myselect2').val(),adddate:$('#adddate').val(),
+			type:$('#myselect2 option:selected').attr('value2'),
+			status:$('#status1 option:selected').attr('value'),
+			lineTextUnicode:$('#lineTextUnicode').val(),
+			lineText:$('#lineText').val(),
+			filename:$('#filename').val()
+			}
     return {
     	offset:params.offset,
     	limit:params.limit,
     	datastream:$('#myselect2').val(),
-    	adddate:$('#adddate').val(),
-    	type:$('#myselect2 option:selected').attr('value2'),
-    	times:$('#splitTime option:selected').attr('value'),
-    	status:$('#status1 option:selected').attr('value')
+//    	adddate:$('#adddate').val(),
+//    	type:$('#myselect2 option:selected').attr('value2'),
+   	times:$('#splitTime option:selected').attr('value'),
+   	fileBean:fileBean
+//    	status:$('#status1 option:selected').attr('value')
     };
 }
