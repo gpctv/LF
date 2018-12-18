@@ -163,6 +163,10 @@
     </bean>
     
     <!-- data bean -->
+    <bean id="LoginKeyFilter" class="com.lifung.filter.LoginKey" scope="prototype">
+    </bean> 
+     <bean id="LoginAction" class="com.lifung.action.LoginAction" scope="prototype">
+    </bean> 
     <bean id="ItfConfig" class="com.lifung.dao.ItfConfig">
     <property name="id"><ref bean="ItfConfigId"/></property>
     </bean>

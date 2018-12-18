@@ -28,8 +28,7 @@ public class FileAction extends ActionSupport {
 	private int limit;
 	private List<FileBean> fileBeanList;
 	 
-	private int total;
-	private String times;
+	private int total; 
 	 
 	private FileBean fileBean;
 	 
@@ -45,14 +44,7 @@ public class FileAction extends ActionSupport {
 	}
 
 	 
-
-	public String getTimes() {
-		return times;
-	}
-
-	public void setTimes(String times) {
-		this.times = times;
-	}
+ 
 
 	public int getTotal() {
 		return total;
@@ -152,8 +144,8 @@ public class FileAction extends ActionSupport {
 			}
 			
 			if(!"".equals(fileBean.getDatastream())&&null!=fileBean.getDatastream()) {
-				this.fileBeanList=this.fileBO.queryOut(this.fileBean, page,this.times );
-				this.total=this.fileBO.queryOutSize(this.fileBean,this.times );
+				this.fileBeanList=this.fileBO.queryOut(this.fileBean, page );
+				this.total=this.fileBO.queryOutSize(this.fileBean );
 			}
 			}else {
 				page.setLimit(this.limit);
@@ -165,8 +157,8 @@ public class FileAction extends ActionSupport {
 					this.fileBean.setAdddate(sdf.format(sdf2.parse(this.fileBean.getAdddate())));
 				}
 				if(!"".equals(this.fileBean.getDatastream())&& null!=this.fileBean.getDatastream()) {
-					this.fileBeanList=this.fileBO.queryIn(this.fileBean, page,this.times );
-					this.total=this.fileBO.queryInSize(this.fileBean,this.times );
+					this.fileBeanList=this.fileBO.queryIn(this.fileBean, page );
+					this.total=this.fileBO.queryInSize(this.fileBean  );
 				}
 			}
 		  

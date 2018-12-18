@@ -31,9 +31,9 @@ public class FileBO {
 	}
 	
 	
-	public List<FileBean> queryOut(FileBean filebean,PageBean page,String times ){
+	public List<FileBean> queryOut(FileBean filebean,PageBean page ){
 		 Times timeObject=new Times();
-		 timeObject.isNoon(times);
+		 timeObject.allDay();
 		Query query =this.sessionFactory.getCurrentSession().getNamedQuery("com.lifung.dao.OutLine.query");
 		query.setString("datastream", filebean.getDatastream()); 
 		query.setInteger("start", page.getStart());
@@ -69,9 +69,9 @@ public class FileBO {
 		return listFileBean;
 	}
 	
-	public int queryOutSize(FileBean filebean,String times ) {
+	public int queryOutSize(FileBean filebean ) {
 		 Times timeObject=new Times();
-		 timeObject.isNoon(times);
+		 timeObject.allDay();
 		Query query =this.sessionFactory.getCurrentSession().getNamedQuery("com.lifung.dao.OutLine.querySize");
 		query.setString("datastream", filebean.getDatastream()); 
 		query.setString("time1", filebean.getAdddate()+" "+timeObject.getTime1());
@@ -84,9 +84,9 @@ public class FileBO {
 		return size ;
 	}
 	
-	public List<FileBean> queryIn(FileBean filebean,PageBean page,String times ){
+	public List<FileBean> queryIn(FileBean filebean,PageBean page  ){
 		 Times timeObject=new Times();
-		 timeObject.isNoon(times);
+		 timeObject.allDay();
 		
 		Query query =this.sessionFactory.getCurrentSession().getNamedQuery("com.lifung.dao.InLine.query");
 		query.setString("datastream", filebean.getDatastream()); 
@@ -124,9 +124,9 @@ public class FileBO {
 		return listFileBean;
 	}
 	
-	public int queryInSize(FileBean filebean, String times ) {
+	public int queryInSize(FileBean filebean ) {
 		 Times timeObject=new Times();
-		 timeObject.isNoon(times);
+		 timeObject.allDay();
 		Query query =this.sessionFactory.getCurrentSession().getNamedQuery("com.lifung.dao.InLine.querySize");
 		query.setString("datastream", filebean.getDatastream()); 
 		query.setString("time1", filebean.getAdddate()+" "+timeObject.getTime1());

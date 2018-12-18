@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function () {
-	conditionSelect();
+	//conditionSelect();
 	
 	$.ajax({
 		 url: CONTEXT_PATH+'/ediStorer',
@@ -38,6 +38,15 @@ $(document).ready(function () {
 	        }
 		});
 	});
+	
+	$('#myselect2').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+		if('E'==  $( '#myselect2 option:selected').attr('value2') ){
+			$('#status1').val('0');
+		}else{
+			$('#status1').val('9');
+		}
+		 $('#status1').selectpicker('refresh');
+	} );
 	
 	$('#query').click(function(){
 		console.log($('.registerForm').data('bootstrapValidator').validate());//做驗證
@@ -74,15 +83,15 @@ $(document).ready(function () {
 	
 });
 
-function conditionSelect(){
-	 var d = new Date();
-	   d.getHours
-	   if(d.getHours()>12){
-	    $('#splitTime').val('noon');
-	    }else{
-	    	 $('#splitTime').val('morning');
-	    }
-}
+//function conditionSelect(){
+//	 var d = new Date();
+//	   d.getHours
+//	   if(d.getHours()>12){
+//	    $('#splitTime').val('noon');
+//	    }else{
+//	    	 $('#splitTime').val('morning');
+//	    }
+//}
 
 function queryTable(){
 	
@@ -107,8 +116,7 @@ function queryParams(params) {
     	limit:params.limit,
     	datastream:$('#myselect2').val(),
 //    	adddate:$('#adddate').val(),
-//    	type:$('#myselect2 option:selected').attr('value2'),
-   	times:$('#splitTime option:selected').attr('value'),
+//    	type:$('#myselect2 option:selected').attr('value2'), 
    	fileBean:fileBean
 //    	status:$('#status1 option:selected').attr('value')
     };

@@ -29,6 +29,7 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
  <script type="text/javascript" src="resource/js/bootstrap-select.min.js"></script>  
 <script type="text/javascript" src="resource/js/dist/bootstrap-table.min.js"></script>  
  <script type="text/javascript" src="resource/js/dist/locale/bootstrap-table-zh-CN.min.js"></script>  
+ <script type="text/javascript" src="resource/js/public.js"></script>  
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 

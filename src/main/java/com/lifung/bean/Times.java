@@ -16,6 +16,10 @@ public class Times {
 	public void setTime2(String time2) {
 		this.time2 = time2;
 	}
+	public void allDay() {
+		setTime1("00:00:00");
+		setTime2("23:59:59");
+	}
 	
 	public void isNoon(String times) {
 		if("noon".equals(times)) {

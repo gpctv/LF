@@ -1,10 +1,27 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 <package name="lifung" namespace="/" extends="struts-default,json-default">
-
+<interceptors>
+            <interceptor name="LoginKey" class="LoginKeyFilter"></interceptor>        
+             <interceptor-stack name="logStack">
+                <interceptor-ref name="LoginKey"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 <!-- web redir jsp -->
-  <action name="index" class="INDEX">
-        <result name="SUCCESS">/index.jsp</result>
+<action name="login" class="LoginAction">
+        <result name="success">/Login.jsp</result>
+  </action>
+  <action name="login2" class="LoginAction" method="login">
+        <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        <result name="success" type="redirectAction"><param name="actionName">${actionName}</param></result>
+        
+  </action>
+ <action name="index" class="NineOne">
+  <result name="SUCCESS">/WEB-INF/view/LFIndex.jsp</result>
+  <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
   </action>
   <action name="tcatEdi" class="TCatEdiAction">
    <result name="success">/WEB-INF/view/EDI/tCatTest.jsp</result>
@@ -29,6 +46,9 @@
 
    <action name="EdiTurn" class="EdiTurnAction">
    <result name="success">/WEB-INF/view/EDI/ediTurn.jsp</result>
+   <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
    </action>
      <action name="device" class="DeviceCartAction">
     <result name="success">/WEB-INF/view/device/DeviceCart.jsp</result>
@@ -38,10 +58,16 @@
     </action>
     <action name="Transmitlog3" class="Transmitlog3Action">
     <result name="success">/WEB-INF/view/transmiglog3/transmitlog3.jsp</result>
+    <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
     </action>
     <action name="Stock" class="StockAction">
     <result name="success">/WEB-INF/view/stock/stock.jsp</result>
     <result name="error">/WEB-INF/view/stock/nonStock.jsp</result>
+    <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
     </action>
     <action name="Forecast" class="ForecastAction">
     <result name="success">/WEB-INF/view/forecast/forecast.jsp</result> 
@@ -51,6 +77,9 @@
     </action>
     <action name="inOutfile" class="FileAction">
     <result name="success">/WEB-INF/view/ediFile/inOutFile.jsp</result> 
+    <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
     </action>
     <action name="bigTran" class="Big5Action">
     <result name="success">/WEB-INF/view/bigTrans/bigTrans.jsp</result> 

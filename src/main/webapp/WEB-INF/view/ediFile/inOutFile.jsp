@@ -40,11 +40,7 @@
 <select id="myselect2" data-live-search="true" class="selectpicker" >
 </select>
     </td>
-   <td>上午/下午:
-<select class="selectpicker" id="splitTime">
-  <option value="morning">上午</option>
-  <option value="noon">下午</option> 
-</select></td>
+   <td> </td>
 </tr>
 <td>
 status:
