@@ -10,6 +10,8 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.util.logging.Logger;
+import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 public class LoginKey extends AbstractInterceptor {
    
@@ -17,10 +19,12 @@ public class LoginKey extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		// TODO Auto-generated method stub
+		Logger LOG=LoggerFactory.getLogger(LoginKey.class);
+		
 		 Map<String, Object> session = ActionContext.getContext().getSession();
 		 //抓USER ActionName
 		 session.put("actionName", invocation.getProxy().getActionName());
-		 System.out.println(getCookie());
+		 LOG.info("LoginKey #0", getCookie());  
 		 //如果有COOKIE 比對是否跟目前SESSION一樣(關掉瀏覽器，或清除COOKIE需重新登入) 
 		 if(getCookie().equals(ServletActionContext.getRequest().getSession().getId())) {
 			 //如果一樣，比對是否有拿到KEY

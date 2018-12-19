@@ -23,6 +23,12 @@
         
    <interceptor-ref name="LoginKey"></interceptor-ref>
   </action>
+   <action name="LFList" class="NineOne">
+  <result name="SUCCESS">/WEB-INF/view/LFList.jsp</result>
+  <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
+  </action>
   <action name="tcatEdi" class="TCatEdiAction">
    <result name="success">/WEB-INF/view/EDI/tCatTest.jsp</result>
   </action>

@@ -4,7 +4,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="hibernate.connection.password">XXX</property>
+        <property name="hibernate.connection.password">xxx</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://VMSGWMSDBUT4:1433 </property>
         <property name="hibernate.connection.username">stanhsu</property>
         <property name="hibernate.default_schema">dbo</property>

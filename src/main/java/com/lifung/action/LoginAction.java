@@ -10,12 +10,10 @@ import org.apache.struts2.ServletActionContext;
 import com.lifung.bean.UserBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
+ 
 public class LoginAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String result;
 	private UserBean userBean;

@@ -8,6 +8,11 @@
  
 <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+<script >
+$(document).ready(function () {
+$('#user').focus();
+})
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>LOGIN</title>
 </head>
