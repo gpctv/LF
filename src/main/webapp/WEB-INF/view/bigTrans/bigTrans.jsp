@@ -9,7 +9,10 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<style  >
+p {
+    	white-space: pre-wrap; 
+    }</style>
 <title>Big5 translate</title>
 </head>
 <body>
@@ -19,7 +22,7 @@
 
 </div>
 <div class="row">
-<div class="col-md-3"> </div><div class="col-md-6"><ul class="list-group"> <li class="list-group-item"><label class="control-label"  > result: </label><label class="control-label" id="result">  </label> </li></ul></div> <div class="col-md-3"> </div>
+<div class="col-md-3"> </div><div class="col-md-6"><ul class="list-group"> <li class="list-group-item"><label class="control-label"  > result: </label><p id="result">  </p> </li></ul></div> <div class="col-md-3"> </div>
 
 </div>
 </div>

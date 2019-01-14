@@ -121,3 +121,14 @@ function queryParams(params) {
 //    	status:$('#status1 option:selected').attr('value')
     };
 }
+
+
+function linetext1(value, row, index){
+	 
+  return   "<label class='control-label'>"+row.lineTextUnicode+"</label>" ;
+	 
+}
+
+function linetext2(value,row,index){
+	return   "<label class='control-label'>"+row.lineText+"</label>" ;
+}

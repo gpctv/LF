@@ -10,6 +10,10 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style  >
+label {
+    	white-space: pre-wrap; 
+    }</style>
  <title>InFile Data</title>
 </head>
 <body> 
@@ -99,10 +103,10 @@ data-page-list="[10, 25, 50, 100]" data-pagination="true" data-classes="table ta
             <th data-field="datastream" >datastream</th>
              <th data-field="filename" >filename</th>
               <th data-field="status" >status</th>
-               <th data-field="lineText" >LineText</th>
+               <th data-field="lineText" data-formatter="linetext2">LineText</th>
                 <th data-field="errMsg">ErrMsg</th>
                  <th data-field="adddate" >addDate</th> 
-                  <th data-field="lineTextUnicode" >lineTextUnicode</th>   
+                  <th data-field="lineTextUnicode"  data-formatter="linetext1" >lineTextUnicode</th>   
         </tr>
     </thead>
 </table>
