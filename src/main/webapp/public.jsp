@@ -35,6 +35,6 @@ var CONTEXT_PATH='${pageContext.request.contextPath}';
 
 </head>
 <body>
-<i class="fas fa-snowflake fa-3x"></i>
+<i class="fas fa-cat fa-3x"></i> 
 </body>
 </html>

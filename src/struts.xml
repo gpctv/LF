@@ -29,6 +29,11 @@
         
    <interceptor-ref name="LoginKey"></interceptor-ref>
   </action>
+  <action name="job" class="JobAction">
+  <result name="success">/WEB-INF/view/EDI/job.jsp</result>
+  <result name="input" type="redirectAction"> <param name="actionName">login</param></result> 
+   <interceptor-ref name="LoginKey"></interceptor-ref>
+  </action>
   <action name="tcatEdi" class="TCatEdiAction">
    <result name="success">/WEB-INF/view/EDI/tCatTest.jsp</result>
   </action>
@@ -64,6 +69,12 @@
     </action>
     <action name="Transmitlog3" class="Transmitlog3Action">
     <result name="success">/WEB-INF/view/transmiglog3/transmitlog3.jsp</result>
+    <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
+        
+   <interceptor-ref name="LoginKey"></interceptor-ref>
+    </action>
+    <action name="Transmitlog2" class="Transmitlog2Action">
+    <result name="success">/WEB-INF/view/transmitlog2/transmitlog2.jsp</result>
     <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
         
    <interceptor-ref name="LoginKey"></interceptor-ref>
@@ -208,8 +219,24 @@
     <result type="json"> 
     </result>
     </action>
+          <action name="transmitlog2Table" class="Transmitlog2Action" method="queryTransmitlog2">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
      <!--transmitlog update  -->
     <action name="transmitlog3Update" class="Transmitlog3Action" method="updateTransmitlog3">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <action name="transmitlog2Update" class="Transmitlog2Action" method="updateTransmitlog2">
     <interceptor-ref name="defaultStack"/>
          <interceptor-ref name="json">
             <param name="enableSMD">true</param>
@@ -377,6 +404,42 @@
     </action>
     <!-- big5 trnaslate result -->
      <action name="translate" class="Big5Action" method="translate">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <!--job query -->
+    <action name="queryJob" class="JobAction" method="queryJobList">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <action name="queryJobTable" class="JobAction" method="queryJobList">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json">
+    <param name="root">jobList</param>
+    </result>
+    </action>
+    
+    <action name="execJob" class="JobAction" method="updateJob">
+    <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    
+    <action name="turnJob" class="JobAction" method="turnJob">
     <interceptor-ref name="defaultStack"/>
          <interceptor-ref name="json">
             <param name="enableSMD">true</param>

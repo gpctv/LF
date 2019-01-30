@@ -5,9 +5,9 @@
 <s:include value="/public.jsp"></s:include>
 <html>
 <head>
-<script type="text/javascript" src="resource/js/transmitlog3/transmitlog3.js"></script>
+<script type="text/javascript" src="resource/js/transmitlog2/transmitlog2.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Transmitlog3</title>
+<title>Transmitlog2</title>
 </head>
 <body>
 <div class="container-fluid">

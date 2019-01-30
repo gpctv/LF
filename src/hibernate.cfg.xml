@@ -6,6 +6,7 @@
     <session-factory>
      <mapping resource="com/lifung/dao/ItfConfig.hbm.xml"></mapping>
      <mapping resource="com/lifung/dao/ItfGtwatcherConfig.hbm.xml"></mapping>
+      <mapping resource="com/lifung/dao/Transmitlog2.hbm.xml"></mapping>
      <mapping resource="com/lifung/dao/Transmitlog3.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/DeviceProfile.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/Facility.hbm.xml"></mapping>

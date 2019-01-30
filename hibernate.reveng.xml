@@ -8,5 +8,5 @@
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
 	<!-- <table-filter match-name="PMA_RTN_QTY"></table-filter> -->
-	  
+	 
 </hibernate-reverse-engineering>

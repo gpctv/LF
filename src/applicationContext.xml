@@ -46,6 +46,11 @@
 			<ref bean="sessionFactory" />
 		</property>
     </bean>
+      <bean id="Transmitlog2DAO" class="com.lifung.dao.Transmitlog2DAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
      <bean id="ItfGtwatcherConfigDAO" class="com.lifung.dao.ItfGtwatcherConfigDAO">
     <property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -134,6 +139,14 @@
 			<ref bean="Transmitlog3DAO" />
 		</property>
     </bean>
+    <bean id="Transmitlog2BO" class="com.lifung.bo.Transmitlog2BO">
+      <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="transmitlog2DAO">
+			<ref bean="Transmitlog2DAO" />
+		</property>
+    </bean>
     <bean id="StockBO" class="com.lifung.bo.StockBO">
     <property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -158,8 +171,12 @@
     <bean id="FileBO" class="com.lifung.bo.FileBO">
     <property name="sessionFactory">
 			<ref bean="sessionFactory" />
-		</property>
-	 
+		</property> 
+    </bean>
+    <bean id="JobBo" class="com.lifung.bo.JobBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property> 
     </bean>
     
     <!-- data bean -->
@@ -179,6 +196,8 @@
     <bean id="NineOne" class="com.lifung.qsv.action.NineOne" scope="prototype">
     </bean>
     <bean id="Transmitlog3" class="com.lifung.dao.Transmitlog3">
+    </bean>
+    <bean id="Transmitlog2" class="com.lifung.dao.Transmitlog2">
     </bean>
     <bean id="Facility" class="com.lifung.dao.Facility">
     </bean>
@@ -232,6 +251,14 @@
 			<ref bean="StorerBO" />
 		</property>
     </bean>
+     <bean id="Transmitlog2Action" class="com.lifung.action.Transmitlog2Action" scope="prototype">
+    <property name="transmitlog2BO">
+			<ref bean="Transmitlog2BO" />
+		</property> 
+		<property name="storerBO">
+			<ref bean="StorerBO" />
+		</property>
+    </bean>
     <bean id="StockAction" class="com.lifung.action.StockAction" scope="prototype">
      
       <property name="stockBO">
@@ -257,8 +284,14 @@
      </property>
         
     </bean>
+    
      <bean id="Big5Action" class="com.lifung.action.Big5Action" scope="prototype">
      
     </bean>
-      
+     
+     <bean id="JobAction" class="com.lifung.action.JobAction" scope="prototype">
+     <property name="jobBO">
+     <ref bean="JobBo"></ref>
+     </property>
+    </bean>
 	</beans>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018/12/27 ?? 04:04:58 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.Transmitlog2" table="TRANSMITLOG2">
+        <id name="transmitlogkey" type="string">
+            <column name="transmitlogkey" />
+            <generator class="assigned" />
+        </id>
+        <property name="tablename" type="string">
+            <column name="tablename" not-null="true" />
+        </property>
+        <property name="key1" type="string">
+            <column name="key1" not-null="true" />
+        </property>
+        <property name="key2" type="string">
+            <column name="key2" />
+        </property>
+        <property name="key3" type="string">
+            <column name="key3" not-null="true" />
+        </property>
+        <property name="transmitflag" type="string">
+            <column name="transmitflag" not-null="true" />
+        </property>
+        <property name="transmitbatch" type="string">
+            <column name="transmitbatch" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" not-null="true" />
+        </property>
+        <property name="addWho" type="string">
+            <column name="AddWho" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" not-null="true" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" not-null="true" />
+        </property>
+        <property name="trafficCop" type="string">
+            <column name="TrafficCop" />
+        </property>
+        <property name="archiveCop" type="string">
+            <column name="ArchiveCop" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.Transmitlog2.query">
+      <![CDATA[
+      select *
+     from(
+          select *,ROW_NUMBER() OVER (ORDER BY adddate desc ,transmitlogkey asc)
+          AS RowNum
+          from TRANSMITLOG2
+          where  key3=:storer and key1 like :key1
+         ) a
+       where a.RowNum >= :start AND a.RowNum <= :end
+       order by  a.RowNum ASC
+       ]]>
+       <return alias="Transmitlog2" class="com.lifung.dao.Transmitlog2"></return>
+     </sql-query>
+     <sql-query name="com.lifung.dao.Transmitlog2.querySize">
+      <![CDATA[
+      
+          select count(*) 
+          AS RowNum
+          from TRANSMITLOG2
+          where key3=:storer  and key1 like :key1
+        
+       ]]>
+        
+     </sql-query>
+</hibernate-mapping>
