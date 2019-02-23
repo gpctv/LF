@@ -14,5 +14,6 @@
         <mapping resource="com/lifung/dao/PmaRtnQty.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/InLine.hbm.xml"></mapping>
         <mapping resource="com/lifung/dao/OutLine.hbm.xml"></mapping>
+         <mapping resource="com/lifung/dao/Rdtprinter.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

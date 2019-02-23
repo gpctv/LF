@@ -94,14 +94,17 @@
     </action>
     <action name="inOutfile" class="FileAction">
     <result name="success">/WEB-INF/view/ediFile/inOutFile.jsp</result> 
-    <result name="input" type="redirectAction"> <param name="actionName">login</param></result>
-        
+    <result name="input" type="redirectAction"> <param name="actionName">login</param></result> 
    <interceptor-ref name="LoginKey"></interceptor-ref>
     </action>
     <action name="bigTran" class="Big5Action">
     <result name="success">/WEB-INF/view/bigTrans/bigTrans.jsp</result> 
     </action>
-    
+    <action name="rdtPrinter" class="PrinterAction" >
+     <result name="success">/WEB-INF/view/rdtPrinter/rdtPrinter.jsp</result> 
+      <result name="input" type="redirectAction"> <param name="actionName">login</param></result> 
+   <interceptor-ref name="LoginKey"></interceptor-ref>
+    </action>
    
    <!-- query all storer   -->
     <action name="storer" class="EdiTurnAction" method="queryStorer">
@@ -447,5 +450,48 @@
     <result type="json"> 
     </result>
     </action>
+    <!-- Printer  -->
+      
+    <action name="queryPrinter" class="PrinterAction" method="queryPrinter">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <action name="isExistPrinterId" class="PrinterAction" method="isExistPrinterId">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+     <action name="insertPrinter" class="PrinterAction" method="insertPrinter">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <action name="updatePrinter" class="PrinterAction" method="updatePrinter">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    <action name="deletePrinter" class="PrinterAction" method="deletePrinter">
+     <interceptor-ref name="defaultStack"/>
+         <interceptor-ref name="json">
+            <param name="enableSMD">true</param>
+        </interceptor-ref>
+    <result type="json"> 
+    </result>
+    </action>
+    
 </package>
 </struts>

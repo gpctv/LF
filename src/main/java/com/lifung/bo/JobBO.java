@@ -49,7 +49,7 @@ public class JobBO {
 	}
 
 	private String queryJobString() {
-		String str = "Select name, enabled ,description " + " from msdb.dbo.sysjobs where name like '%'+:jobName+'%'"
+		String str = "Select name, enabled ,description " + " from msdb.dbo.sysjobs_view where name like '%'+:jobName+'%'"
 				+ " order by name";
 		return str;
 	}

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019/2/23 ?? 09:42:22 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.lifung.dao.Rdtprinter" table="RDT.RDTPrinter">
+        <id name="printerId" type="string">
+            <column name="PrinterID" />
+            <generator class="assigned" />
+        </id>
+        <property name="description" type="string">
+            <column name="Description" not-null="true" />
+        </property>
+        <property name="winPrinter" type="string">
+            <column name="WinPrinter" not-null="true" />
+        </property>
+        <property name="addDate" type="timestamp">
+            <column name="AddDate" length="23" />
+        </property>
+        <property name="addWho" type="string">
+            <column name="AddWho" not-null="true" />
+        </property>
+        <property name="editDate" type="timestamp">
+            <column name="EditDate" length="23" />
+        </property>
+        <property name="editWho" type="string">
+            <column name="EditWho" />
+        </property>
+        <property name="printerGroup" type="string">
+            <column name="PrinterGroup" />
+        </property>
+        <property name="voicePrinterNo" type="java.lang.Integer">
+            <column name="VoicePrinterNo" />
+        </property>
+        <property name="spoolerGroup" type="string">
+            <column name="SpoolerGroup" not-null="true" />
+        </property>
+    </class>
+    <sql-query name="com.lifung.dao.Rdtprinter.query">
+      <![CDATA[
+       select *
+     from(
+          select *,ROW_NUMBER() OVER (ORDER BY printerId desc  )
+          AS RowNum
+          from rdt.rdtprinter
+          where  PrinterId like :printerId and Description like :ipaddress and WinPrinter like :printerName
+         ) a
+       where a.RowNum >= :start AND a.RowNum <= :end
+       order by  a.RowNum ASC
+          ]]>
+        <return class="com.lifung.dao.Rdtprinter" alias="rdtprinter"></return>
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.Rdtprinter.querySize">
+      <![CDATA[
+      
+          select count(*) 
+          AS RowNum
+          from rdt.rdtprinter
+          where  PrinterId like :printerId and Description like :ipaddress and WinPrinter like :printerName
+         
+          ]]>
+        
+     </sql-query>
+     
+     <sql-query name="com.lifung.dao.Rdtprinter.isExist">
+      <![CDATA[
+      
+          select count(*) 
+          AS RowNum
+          from rdt.rdtprinter
+          where  PrinterId = :printerId
+         
+          ]]>
+        
+     </sql-query>
+    
+</hibernate-mapping>

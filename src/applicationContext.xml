@@ -86,6 +86,11 @@
 			<ref bean="sessionFactory" />
 		</property>
     </bean>
+    <bean id="RdtprinterDAO" class="com.lifung.dao.RdtprinterDAO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+    </bean>
     
     <!-- BO -->
     <bean id="FacilityBO" class="com.lifung.bo.FacilityBO">
@@ -178,7 +183,14 @@
 			<ref bean="sessionFactory" />
 		</property> 
     </bean>
-    
+    <bean id="PrinterBO" class="com.lifung.bo.PrinterBO">
+    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property> 
+		<property name="rdtprinterDAO">
+			<ref bean="RdtprinterDAO" />
+		</property> 
+    </bean>
     <!-- data bean -->
     <bean id="LoginKeyFilter" class="com.lifung.filter.LoginKey" scope="prototype">
     </bean> 
@@ -218,6 +230,8 @@
     <bean id="OutLineId" class="com.lifung.dao.OutLineId">
     </bean>
       <bean id="InLine" class="com.lifung.dao.InLine">
+    </bean>
+    <bean id="Rdtprinter" class="com.lifung.dao.Rdtprinter">
     </bean>
     <!-- Action -->
     <bean id="TCatEdiAction" class="com.lifung.action.TCatEdiAction" scope="prototype"> 
@@ -281,8 +295,7 @@
      <bean id="FileAction" class="com.lifung.action.FileAction" scope="prototype">
      <property name="fileBO">
      <ref bean="FileBO"></ref>
-     </property>
-        
+     </property> 
     </bean>
     
      <bean id="Big5Action" class="com.lifung.action.Big5Action" scope="prototype">
@@ -292,6 +305,11 @@
      <bean id="JobAction" class="com.lifung.action.JobAction" scope="prototype">
      <property name="jobBO">
      <ref bean="JobBo"></ref>
+     </property>
+    </bean>
+    <bean id="PrinterAction" class="com.lifung.action.PrinterAction" scope="prototype">
+    <property name="printerBO">
+     <ref bean="PrinterBO"></ref>
      </property>
     </bean>
 	</beans>
