@@ -16,10 +16,26 @@ public class JobBO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	public ArrayList<SysJobsBean> queryJobList(String jobName){
+		Query query = this.sessionFactory.getCurrentSession().createSQLQuery(queryJobListString());
+		query.setString("jobName", jobName.trim());
+		List<Object[]> rows = query.list();
+		ArrayList<SysJobsBean> sysJobList = new ArrayList<SysJobsBean>();
+
+		for (Object[] row : rows) {
+			SysJobsBean sysJob = new SysJobsBean();
+			sysJob.setDescription(null == row[2] ? "" : row[2].toString());
+			sysJob.setEnabled(row[1].toString());
+			sysJob.setName(row[0].toString());
+			sysJobList.add(sysJob);
+		}
+		return sysJobList;
+	}
 
 	public ArrayList<SysJobsBean> queryJob(String jobName) {
 		Query query = this.sessionFactory.getCurrentSession().createSQLQuery(queryJobString());
-		query.setString("jobName", jobName);
+		query.setString("jobName", jobName.trim());
 		List<Object[]> rows = query.list();
 		ArrayList<SysJobsBean> sysJobList = new ArrayList<SysJobsBean>();
 
@@ -47,9 +63,15 @@ public class JobBO {
 		int i = query.executeUpdate();
 		return String.valueOf(i);
 	}
+	
+	private String queryJobListString() {
+		String str = "Select name, enabled ,description " + " from msdb.dbo.sysjobs_view where name like :jobName+'%'"
+				+ " order by name";
+		return str;
+	}
 
 	private String queryJobString() {
-		String str = "Select name, enabled ,description " + " from msdb.dbo.sysjobs_view where name like '%'+:jobName+'%'"
+		String str = "Select name, enabled ,description " + " from msdb.dbo.sysjobs_view where name like :jobName "
 				+ " order by name";
 		return str;
 	}

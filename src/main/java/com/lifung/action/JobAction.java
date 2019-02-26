@@ -69,6 +69,15 @@ public class JobAction extends ActionSupport{
 		return "success";
 	}
 	
+	public String queryTwAllJob() {
+		try {
+			this.jobList=jobBO.queryJobList(this.jobName);
+			}catch(Exception e) {
+				LOG.error("Job action queryJobList #0", e);
+			}
+			return "success";
+	}
+	
 	public String updateJob() {
 		this.jobBO.execJob(this.jobName);
 		return "success";

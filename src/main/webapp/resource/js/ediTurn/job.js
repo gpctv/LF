@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function () {
-	var p={jobName:''}
+	var p={jobName:'TW-'}
 	$.ajax({
 		 url: CONTEXT_PATH+'/queryJob',
 		 type: 'POST',
