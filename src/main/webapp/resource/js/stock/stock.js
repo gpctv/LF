@@ -102,6 +102,7 @@ $(document).ready(function () {
 			dataType:'json',
 			data:{storerkey:$('#myselect').val(),sku:$('#sku').val()},
 			success:function(data){
+				comMsg=data.msg;
 				if('success'==data.msg){
 				$('#stockUpNum').text('insert '+data.stockInsert+'至測試環境');
 				}else{
@@ -142,6 +143,7 @@ $(document).ready(function () {
 			dataType:'json',
 			data:{facility:$('#facilitySelect').val()},
 			success:function(data){
+				comMsg=data.msg;
 				if('success'==data.msg){
 				$('#locUpNum').text('insert '+data.locInsert+'至測試環境');
 				}else{

@@ -312,4 +312,12 @@
      <ref bean="PrinterBO"></ref>
      </property>
     </bean>
+    <bean id="FileUploadBO"  class="com.lifung.bo.FileUploadBO" >
+    
+    </bean>
+     <bean id="FileUploadAction" class="com.lifung.action.FileUploadAction" scope="prototype">
+    <property name="fileUploadBO">
+     <ref bean="FileUploadBO"></ref>
+     </property>
+    </bean>
 	</beans>

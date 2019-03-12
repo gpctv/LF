@@ -1,6 +1,8 @@
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+<constant name="struts.multipart.saveDir" value="/temp" />
 <package name="lifung" namespace="/" extends="struts-default,json-default">
+
 <interceptors>
             <interceptor name="LoginKey" class="LoginKeyFilter"></interceptor>        
              <interceptor-stack name="logStack">
@@ -45,6 +47,11 @@
   </action>
   <action name="test" class="NineOne">
   <result name="SUCCESS">/WEB-INF/view/test/test.jsp</result>
+  </action>
+  
+   <action name="nineOne2" class="NineOne" method="clientIpGet">
+   <result type="json"> 
+    </result>
   </action>
   
    <action name="report" class="NineOne"  >
@@ -104,6 +111,14 @@
      <result name="success">/WEB-INF/view/rdtPrinter/rdtPrinter.jsp</result> 
       <result name="input" type="redirectAction"> <param name="actionName">login</param></result> 
    <interceptor-ref name="LoginKey"></interceptor-ref>
+    </action>
+    <action name="fileUpload" class="FileUploadAction" >
+     <result name="success">/WEB-INF/view/fileUpload/fileUpload.jsp</result> 
+      
+    </action>
+    <action name="uploadFile" class="FileUploadAction" method="uploadFile">
+   
+    <result type="json"></result>
     </action>
    
    <!-- query all storer   -->
